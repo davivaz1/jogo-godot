@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://badx6evo4sqbe"]
+[gd_scene load_steps=7 format=3 uid="uid://badx6evo4sqbe"]
 
 [ext_resource type="Script" uid="uid://myox2ihkpey2" path="res://scripts/MainMenu.gd" id="1_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://d4fb34s5wwsfu" path="res://assets/backgrounds/background.png" id="2_wu84c"]
 [ext_resource type="Texture2D" uid="uid://d3spwnwuoatjs" path="res://assets/title.png" id="3_8ln24"]
 [ext_resource type="Texture2D" uid="uid://bmxeirivvp3th" path="res://assets/btn.png" id="4_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://o2a44cbj2k4j" path="res://assets/btn_config.png" id="5_8ln24"]
+[ext_resource type="AudioStream" uid="uid://dlfim2ja4ogdy" path="res://assets/audios/Som-de-clique-de-mouse-Efeito-Sonoro.ogg" id="6_rtw2f"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -39,13 +41,63 @@ offset_left = 446.0
 offset_top = 218.0
 offset_right = 747.0
 offset_bottom = 435.0
+theme_override_constants/separation = 4
 
-[node name="btn_jogar" type="Button" parent="VBoxContainer"]
+[node name="Button_Jogar" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
+texture_normal = ExtResource("4_rtw2f")
+
+[node name="Label" type="Label" parent="VBoxContainer/Button_Jogar"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 6.0
+offset_right = 168.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
 text = "JOGAR"
-icon = ExtResource("4_rtw2f")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="btn_creditos" type="Button" parent="VBoxContainer"]
+[node name="Button_Creditos" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
+texture_normal = ExtResource("4_rtw2f")
+
+[node name="Label" type="Label" parent="VBoxContainer/Button_Creditos"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 8.0
+offset_right = 193.0
+offset_bottom = 43.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
 text = "CREDITOS"
-icon = ExtResource("4_rtw2f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button_Sair" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_rtw2f")
+
+[node name="Label" type="Label" parent="VBoxContainer/Button_Sair"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 7.0
+offset_right = 159.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "SAIR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button_Config" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1071.0
+offset_top = 8.0
+offset_right = 1151.0
+offset_bottom = 54.0
+texture_normal = ExtResource("5_8ln24")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_rtw2f")
