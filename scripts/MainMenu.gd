@@ -13,7 +13,6 @@ func _ready():
 	btn_creditos.pressed.connect(_on_creditos_pressed)
 	btn_sair.pressed.connect(_on_sair_pressed)
 	btn_config.pressed.connect(_on_config_pressed)
-	
 	# Garantir que o áudio não cause erro se estiver vazio
 	if click_sound.stream == null:
 		print("⚠️ Nenhum som de clique carregado — insira um .ogg em AudioStreamPlayer")
@@ -23,8 +22,8 @@ func _ready():
 func _on_jogar_pressed():
 	_play_click()
 	# Troca para a tela de seleção de níveis
-	if ResourceLoader.exists("res://scenes/LevelSelect.tscn"):
-		get_tree().change_scene_to_file("res://scenes/LevelSelect.tscn")
+	if ResourceLoader.exists("res://scenes/level_select.tscn"):
+		get_tree().change_scene_to_file("res://scenes/level_select.tscn")
 	else:
 		_show_message("Tela de seleção de níveis ainda não criada.")
 
@@ -142,8 +141,8 @@ func _show_volume_popup():
 	var popup = Window.new()
 	popup.title = "Configurações de Volume"
 	popup.size = Vector2(400, 120)
-	popup.popup_centered()
 	add_child(popup)
+	popup.popup_centered()
 
 	var vbox = VBoxContainer.new()
 	vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -173,3 +172,7 @@ func _on_volume_changed(value):
 	# Converter valor linear para decibéis
 	var db = linear_to_db(value)
 	AudioServer.set_bus_volume_db(0, db)
+
+func _on_button_creditos_pressed() -> void:
+	get_tree().change_scene_to_file("res://main_menu.tscn")
+	

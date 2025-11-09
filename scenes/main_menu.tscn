@@ -29,18 +29,18 @@ texture = ExtResource("2_wu84c")
 
 [node name="titulo" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 472.0
-offset_top = 64.0
-offset_right = 676.0
-offset_bottom = 110.0
+offset_left = 464.0
+offset_top = 76.0
+offset_right = 668.0
+offset_bottom = 122.0
 texture = ExtResource("3_8ln24")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 446.0
 offset_top = 218.0
-offset_right = 747.0
-offset_bottom = 435.0
+offset_right = 863.0
+offset_bottom = 436.0
 theme_override_constants/separation = 4
 
 [node name="Button_Jogar" type="TextureButton" parent="VBoxContainer"]
@@ -81,10 +81,10 @@ texture_normal = ExtResource("4_rtw2f")
 
 [node name="Label" type="Label" parent="VBoxContainer/Button_Sair"]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 7.0
-offset_right = 159.0
-offset_bottom = 42.0
+offset_left = 106.0
+offset_top = 10.0
+offset_right = 160.0
+offset_bottom = 45.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "SAIR"
@@ -93,11 +93,14 @@ vertical_alignment = 1
 
 [node name="Button_Config" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1071.0
+offset_left = 1072.0
 offset_top = 8.0
-offset_right = 1151.0
+offset_right = 1152.0
 offset_bottom = 54.0
 texture_normal = ExtResource("5_8ln24")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_rtw2f")
+
+[connection signal="pressed" from="VBoxContainer/Button_Jogar" to="." method="_on_button_jogar_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button_Creditos" to="." method="_on_button_creditos_pressed"]
