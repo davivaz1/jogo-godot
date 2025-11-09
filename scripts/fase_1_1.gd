@@ -4,6 +4,9 @@ extends Control
 @onready var exercicio_container = $exercicio_container
 @onready var label_vitoria = $label_vitoria
 @onready var audio = $AudioStreamPlayer2D
+@onready var button_restart = $exercicio_container/button_restart
+@onready var feedback_label = $exercicio_container/feedback_label
+
 
 var selecionados = []
 var corretos = ["item_computador", "item_celular"]
@@ -13,21 +16,39 @@ func _ready():
 	explicacao_container.visible = true
 	exercicio_container.visible = false
 	label_vitoria.visible = false
+	button_restart.visible = false
 
 	# Conectar botões
-	explicacao_container.get_node("button_continuar").pressed.connect(_iniciar_exercicio)
+	explicacao_container.get_node("button_continuar").pressed.connect(func():
+		_play_click()
+		_iniciar_exercicio()
+	)
 
 	for nome in ["item_computador", "item_celular", "item_maca"]:
 		var item = $exercicio_container/itens_container.get_node(nome)
 		item.pressed.connect(func(): _on_item_pressed(nome))
 
-	$exercicio_container/button_continuar.pressed.connect(_finalizar_fase)
+	$exercicio_container/button_continuar.pressed.connect(func():
+		_play_click()
+		_finalizar_fase()
+	)
 	$exercicio_container/button_continuar.visible = false
+
+	button_restart.pressed.connect(func():
+		_play_click()
+		_reiniciar_exercicio()
+	)
+
+func _play_click():
+	if audio and audio.stream:
+		audio.play()
 
 func _iniciar_exercicio():
 	explicacao_container.visible = false
 	exercicio_container.visible = true
 	$exercicio_container/feedback_label.visible = false
+	button_restart.visible = false
+	$exercicio_container/button_continuar.visible = false
 	selecionados.clear()
 
 # --- Quando o jogador clica em um item ---
@@ -36,9 +57,7 @@ func _on_item_pressed(nome_item: String):
 		return # evita clicar duas vezes no mesmo
 
 	selecionados.append(nome_item)
-
-	if audio and audio.stream:
-		audio.play()
+	_play_click()
 
 	# Quando 2 itens forem escolhidos, verifica
 	if selecionados.size() == 2:
@@ -58,15 +77,26 @@ func _verificar_resposta():
 		feedback.text = "Correto! 💡"
 		feedback.add_theme_color_override("font_color", Color(0, 1, 0)) # verde
 		$exercicio_container/button_continuar.visible = true
+		button_restart.visible = false
 	else:
 		feedback.text = "Tente novamente!"
 		feedback.add_theme_color_override("font_color", Color(1, 0, 0)) # vermelho
+		button_restart.visible = true
+		$exercicio_container/button_continuar.visible = false
 		selecionados.clear()
+
+# --- Botão “Reiniciar” ---
+func _reiniciar_exercicio():
+	feedback_label.visible = false
+	button_restart.visible = false
+	$exercicio_container/button_continuar.visible = false
+	selecionados.clear()
 
 # --- Quando acerta e clica em “Continuar” ---
 func _finalizar_fase():
 	label_vitoria.visible = true
 	label_vitoria.text = "VOCÊ CONCLUIU A FASE!"
+	await get_tree().create_timer(1.5).timeout
 	_save_progress_and_return(2)
 
 # --- Salva o progresso e retorna à seleção de fases ---
@@ -82,5 +112,5 @@ func _save_progress_and_return(next_stage: int):
 			cfg.set_value("level1", "unlocked_stage", next_stage)
 	cfg.save(save_path)
 
-	await get_tree().create_timer(1.5).timeout
-	get_tree().change_scene_to_file("res://scenes/Level1_StageSelect.tscn")
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://scenes/nivel_1_selecionafase.tscn")
