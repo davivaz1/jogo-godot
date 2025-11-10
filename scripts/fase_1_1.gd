@@ -6,7 +6,7 @@ extends Control
 @onready var audio = $AudioStreamPlayer2D
 @onready var button_restart = $exercicio_container/button_restart
 @onready var feedback_label = $exercicio_container/feedback_label
-
+@onready var voltar_button = $voltar_button   # <--- adiciona o botão de voltar aqui
 
 var selecionados = []
 var corretos = ["item_computador", "item_celular"]
@@ -17,6 +17,10 @@ func _ready():
 	exercicio_container.visible = false
 	label_vitoria.visible = false
 	button_restart.visible = false
+
+	# Conecta o botão de voltar
+	if voltar_button:
+		voltar_button.pressed.connect(_on_voltar_button_pressed)
 
 	# Conectar botões
 	explicacao_container.get_node("button_continuar").pressed.connect(func():
@@ -113,4 +117,9 @@ func _save_progress_and_return(next_stage: int):
 	cfg.save(save_path)
 
 	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://scenes/nivel_1_selecionafase.tscn")
+
+# --- Botão de voltar ---
+func _on_voltar_button_pressed():
+	_play_click()
 	get_tree().change_scene_to_file("res://scenes/nivel_1_selecionafase.tscn")

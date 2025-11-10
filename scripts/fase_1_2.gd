@@ -9,6 +9,7 @@ extends Control
 @onready var button_continuar = $exercicio_container/button_continuar
 @onready var area_renovavel = $exercicio_container/area_renovavel
 @onready var area_nao_renovavel = $exercicio_container/area_nao_renovavel
+@onready var voltar_button = $voltar_button   # <--- adiciona essa linha
 
 var dragging_item = null
 var original_pos = {}
@@ -31,6 +32,10 @@ func _ready():
 	button_restart.visible = false
 	button_continuar.visible = false
 	feedback_label.visible = false
+
+	# --- Conecta o botão de voltar ---
+	if voltar_button:
+		voltar_button.pressed.connect(_on_voltar_button_pressed)
 
 	explicacao_container.get_node("button_continuar").pressed.connect(func():
 		_play_click()
@@ -76,22 +81,14 @@ func _reiniciar_exercicio():
 
 # --- Drag & Drop ---
 func _on_item_gui_input(event: InputEvent, item):
-	# Arrasto com mouse (mais comum no PC)
 	if event is InputEventMouseMotion and event.button_mask & MOUSE_BUTTON_MASK_LEFT:
 		item.position += event.relative
-
-	# Arrasto com toque (mobile / touchscreen)
 	elif event is InputEventScreenDrag:
 		item.position += event.relative
-
-	# Soltou o botão do mouse
 	elif event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		_soltar_item(item)
-
-	# Soltou o toque na tela
 	elif event is InputEventScreenTouch and not event.pressed:
 		_soltar_item(item)
-
 
 func _soltar_item(item):
 	var rect_item = item.get_global_rect()
@@ -106,7 +103,6 @@ func _soltar_item(item):
 		item.position = original_pos[item.name]
 		return
 
-	# Todos os itens foram colocados?
 	if respostas.size() == corretos.size():
 		_verificar_respostas()
 
@@ -148,4 +144,9 @@ func _salvar_progresso_e_voltar():
 	cfg.save(save_path)
 
 	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://scenes/nivel_1_selecionafase.tscn")
+
+# --- Botão de voltar ---
+func _on_voltar_button_pressed():
+	_play_click()
 	get_tree().change_scene_to_file("res://scenes/nivel_1_selecionafase.tscn")

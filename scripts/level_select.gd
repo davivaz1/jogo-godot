@@ -6,7 +6,7 @@ extends Control
 @onready var nivel3_btn = $HBoxContainer/Nivel3_Button3
 
 var save_path = "user://save_data.cfg"
-var unlocked_levels = 1  # padrão: apenas o nível 1 está liberado
+var unlocked_levels = 1 # padrão: apenas o nível 1 está liberado
 
 func _ready() -> void:
 	# Carrega progresso salvo
@@ -140,3 +140,7 @@ func _on_volume_changed(value):
 	# Converter valor linear para decibéis
 	var db = linear_to_db(value)
 	AudioServer.set_bus_volume_db(0, db)
+
+
+func _on_nivel_2_button_2_pressed() -> void:
+	pass # Replace with function body.

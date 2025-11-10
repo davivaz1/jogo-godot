@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://dntrc0j7te2ts"]
+
+[ext_resource type="Script" uid="uid://dw16kpxadyulj" path="res://scripts/nivel_3_selecionafase.gd" id="1_gj336"]
+[ext_resource type="Texture2D" uid="uid://d4fb34s5wwsfu" path="res://assets/backgrounds/background.png" id="2_d8qou"]
+[ext_resource type="Texture2D" uid="uid://bmxeirivvp3th" path="res://assets/btn.png" id="3_ciyfb"]
+[ext_resource type="Texture2D" uid="uid://i4qajn0aj5rk" path="res://assets/nivel3.png" id="4_nlroa"]
+[ext_resource type="Texture2D" uid="uid://devum5bbbwbmt" path="res://assets/botao selecao nivel.png" id="5_top73"]
+[ext_resource type="Texture2D" uid="uid://cwqool7exwc4j" path="res://assets/1.png" id="6_hklda"]
+[ext_resource type="Texture2D" uid="uid://1uaphb5wwogg" path="res://assets/2.png" id="7_5m3ca"]
+[ext_resource type="Texture2D" uid="uid://ceo1myedte133" path="res://assets/3.png" id="8_nkt4n"]
+
+[node name="Nivel3Selecionafase" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gj336")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_d8qou")
+
+[node name="Nivel3_png" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 40.0
+offset_right = 706.0
+offset_bottom = 110.0
+texture = ExtResource("3_ciyfb")
+
+[node name="txt" type="TextureRect" parent="Nivel3_png"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 203.0
+offset_bottom = 48.0
+texture = ExtResource("4_nlroa")
+
+[node name="button_fase_1" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 272.0
+offset_right = 416.0
+offset_bottom = 388.0
+texture_normal = ExtResource("5_top73")
+
+[node name="txt" type="TextureRect" parent="button_fase_1"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 24.0
+offset_right = 112.0
+offset_bottom = 64.0
+texture = ExtResource("6_hklda")
+
+[node name="button_fase_2" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 272.0
+offset_right = 672.0
+offset_bottom = 388.0
+texture_normal = ExtResource("5_top73")
+
+[node name="txt" type="TextureRect" parent="button_fase_2"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 24.0
+offset_right = 112.0
+offset_bottom = 64.0
+texture = ExtResource("7_5m3ca")
+
+[node name="button_fase_3" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 744.0
+offset_top = 272.0
+offset_right = 928.0
+offset_bottom = 388.0
+texture_normal = ExtResource("5_top73")
+
+[node name="txt" type="TextureRect" parent="button_fase_3"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 120.0
+offset_bottom = 64.0
+texture = ExtResource("8_nkt4n")
+
+[node name="button_voltar" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 472.0
+offset_right = 1122.0
+offset_bottom = 542.0
+texture_normal = ExtResource("3_ciyfb")
+
+[node name="feedback_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 424.0
+offset_right = 512.0
+offset_bottom = 456.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

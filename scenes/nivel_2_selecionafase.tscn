@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3oldnc4ased2"]
+
+[ext_resource type="Script" uid="uid://g1rpc4vwx60h" path="res://scripts/nivel_1_selecionafase.gd" id="1_h4ryr"]
+[ext_resource type="Texture2D" uid="uid://ddmds6acxyhcu" path="res://assets/fundo jogo.png" id="2_slk7i"]
+[ext_resource type="Texture2D" uid="uid://bmxeirivvp3th" path="res://assets/btn.png" id="3_0y3d0"]
+[ext_resource type="Texture2D" uid="uid://cmcgxtovxdwwv" path="res://assets/nivel 2.png" id="4_dgejr"]
+[ext_resource type="Script" uid="uid://3aodw5nkyihv" path="res://nivel_2_selecionafase.gd" id="5_5qkou"]
+[ext_resource type="Texture2D" uid="uid://devum5bbbwbmt" path="res://assets/botao selecao nivel.png" id="6_0hftj"]
+[ext_resource type="Texture2D" uid="uid://cwqool7exwc4j" path="res://assets/1.png" id="7_ad7k6"]
+[ext_resource type="Texture2D" uid="uid://1uaphb5wwogg" path="res://assets/2.png" id="8_v0574"]
+[ext_resource type="Texture2D" uid="uid://ceo1myedte133" path="res://assets/3.png" id="9_agcuq"]
+[ext_resource type="Texture2D" uid="uid://bh836apgwxtye" path="res://assets/botao voltar.png" id="10_2o75a"]
+
+[node name="Nivel2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h4ryr")
+
+[node name="fundo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_slk7i")
+
+[node name="Nivel1_png" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 56.0
+offset_right = 706.0
+offset_bottom = 126.0
+texture = ExtResource("3_0y3d0")
+
+[node name="txt" type="TextureRect" parent="Nivel1_png"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 194.0
+offset_bottom = 48.0
+texture = ExtResource("4_dgejr")
+script = ExtResource("5_5qkou")
+
+[node name="Fase1_Button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 272.0
+offset_right = 432.0
+offset_bottom = 388.0
+texture_normal = ExtResource("6_0hftj")
+
+[node name="txt" type="TextureRect" parent="Fase1_Button"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 104.0
+offset_bottom = 80.0
+texture = ExtResource("7_ad7k6")
+
+[node name="Fase2_Button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 272.0
+offset_right = 664.0
+offset_bottom = 392.0
+texture_normal = ExtResource("6_0hftj")
+
+[node name="txt" type="TextureRect" parent="Fase2_Button"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 112.0
+offset_bottom = 80.0
+texture = ExtResource("8_v0574")
+
+[node name="Fase3_Button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 712.0
+offset_top = 272.0
+offset_right = 896.0
+offset_bottom = 388.0
+texture_normal = ExtResource("6_0hftj")
+
+[node name="txt" type="TextureRect" parent="Fase3_Button"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 112.0
+offset_bottom = 80.0
+texture = ExtResource("9_agcuq")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(576, 280)
+
+[node name="voltar_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 580.0
+offset_right = 208.0
+offset_bottom = 626.0
+texture_normal = ExtResource("10_2o75a")
+
+[connection signal="pressed" from="voltar_button" to="." method="_on_voltar_button_pressed"]

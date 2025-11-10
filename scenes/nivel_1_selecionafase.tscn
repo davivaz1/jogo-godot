@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dus5xnjf6mbi2"]
+[gd_scene load_steps=10 format=3 uid="uid://dus5xnjf6mbi2"]
 
 [ext_resource type="Script" uid="uid://g1rpc4vwx60h" path="res://scripts/nivel_1_selecionafase.gd" id="1_e2tdu"]
 [ext_resource type="Texture2D" uid="uid://ddmds6acxyhcu" path="res://assets/fundo jogo.png" id="2_2pjvt"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cwqool7exwc4j" path="res://assets/1.png" id="6_tvgea"]
 [ext_resource type="Texture2D" uid="uid://1uaphb5wwogg" path="res://assets/2.png" id="7_uj3wi"]
 [ext_resource type="Texture2D" uid="uid://ceo1myedte133" path="res://assets/3.png" id="8_kfjpf"]
+[ext_resource type="Texture2D" uid="uid://bh836apgwxtye" path="res://assets/botao voltar.png" id="9_uj3wi"]
 
 [node name="Nivel1" type="Control"]
 layout_mode = 3
@@ -91,12 +92,15 @@ offset_right = 112.0
 offset_bottom = 80.0
 texture = ExtResource("8_kfjpf")
 
-[node name="voltar_button" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 576.0
-offset_top = 280.0
-offset_right = 616.0
-offset_bottom = 320.0
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(576, 280)
+
+[node name="voltar_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 580.0
+offset_right = 208.0
+offset_bottom = 626.0
+texture_normal = ExtResource("9_uj3wi")
+
+[connection signal="pressed" from="voltar_button" to="." method="_on_voltar_button_pressed"]

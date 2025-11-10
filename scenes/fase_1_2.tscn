@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://of4egs3e7r77"]
+[gd_scene load_steps=12 format=3 uid="uid://of4egs3e7r77"]
 
 [ext_resource type="Script" uid="uid://yw8n4pr1epwl" path="res://scripts/fase_1_2.gd" id="1_151fi"]
 [ext_resource type="Texture2D" uid="uid://d4fb34s5wwsfu" path="res://assets/backgrounds/background.png" id="2_ugttr"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://du8236nmfhjrs" path="res://assets/item_nuclear.png" id="7_lrcup"]
 [ext_resource type="Texture2D" uid="uid://br5yvo3ktyyvo" path="res://assets/item_termica.png" id="8_ooj27"]
 [ext_resource type="Texture2D" uid="uid://bulxux6am482v" path="res://assets/item_petroleo.png" id="9_pn0b4"]
+[ext_resource type="Texture2D" uid="uid://bh836apgwxtye" path="res://assets/botao voltar.png" id="11_xp35h"]
 
 [node name="Fase12" type="Control"]
 layout_mode = 3
@@ -215,3 +216,13 @@ offset_left = 400.0
 offset_top = 208.0
 offset_right = 720.0
 offset_bottom = 424.0
+
+[node name="voltar_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 581.0
+offset_right = 207.0
+offset_bottom = 627.0
+texture_normal = ExtResource("11_xp35h")
+
+[connection signal="pressed" from="voltar_button" to="." method="_on_voltar_button_pressed"]

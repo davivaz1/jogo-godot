@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2swtptynlu7f"]
+[gd_scene load_steps=14 format=3 uid="uid://b2swtptynlu7f"]
 
 [ext_resource type="Script" uid="uid://8j06xcdxl1vg" path="res://scripts/fase_1_3.gd" id="1_nb2ip"]
 [ext_resource type="Texture2D" uid="uid://d4fb34s5wwsfu" path="res://assets/backgrounds/background.png" id="2_2hcfl"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bdqmc4i055vu" path="res://assets/item_eolica.png" id="8_0w4uv"]
 [ext_resource type="Texture2D" uid="uid://l42vu2hmdtw0" path="res://assets/item_hidreletrica.png" id="9_420ku"]
 [ext_resource type="Texture2D" uid="uid://hakiq5v7etll" path="res://assets/divisao.png" id="10_v2sgr"]
+[ext_resource type="Texture2D" uid="uid://bh836apgwxtye" path="res://assets/botao voltar.png" id="12_f7t8a"]
+[ext_resource type="Texture2D" uid="uid://bmcr6p6h54h5h" path="res://assets/proximo nivel.png" id="13_fmo12"]
 
 [node name="Fase13" type="Control"]
 layout_mode = 3
@@ -107,10 +109,10 @@ offset_bottom = 264.0
 
 [node name="fonte_sol" type="TextureButton" parent="exercicio_container/area_fontes"]
 layout_mode = 0
-offset_left = 104.0
-offset_top = 16.0
-offset_right = 224.0
-offset_bottom = 112.0
+offset_left = 79.0
+offset_top = 18.0
+offset_right = 227.0
+offset_bottom = 114.0
 texture_normal = ExtResource("4_fmo12")
 stretch_mode = 0
 
@@ -207,3 +209,22 @@ offset_left = 520.0
 offset_top = 312.0
 offset_right = 560.0
 offset_bottom = 335.0
+
+[node name="votar_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 583.0
+offset_right = 215.0
+offset_bottom = 629.0
+texture_normal = ExtResource("12_f7t8a")
+
+[node name="botao_proximo" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 986.0
+offset_top = 336.0
+offset_right = 1132.0
+offset_bottom = 376.0
+texture_normal = ExtResource("13_fmo12")
+
+[connection signal="pressed" from="votar_button" to="." method="_on_votar_button_pressed"]
+[connection signal="pressed" from="botao_proximo" to="." method="_on_botao_proximo_pressed"]

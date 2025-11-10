@@ -16,7 +16,7 @@ func _ready():
 	fase1_button.pressed.connect(_on_fase1_pressed)
 	fase2_button.pressed.connect(_on_fase2_pressed)
 	fase3_button.pressed.connect(_on_fase3_pressed)
-	voltar_button.pressed.connect(_on_voltar_pressed)
+	voltar_button.pressed.connect(_on_voltar_button_pressed) # 🔧 CORRIGIDO
 
 func _play_click():
 	if click_sound and click_sound.stream:
@@ -49,10 +49,6 @@ func _update_stage_buttons():
 	fase2_button.disabled = unlocked_stage < 2
 	fase3_button.disabled = unlocked_stage < 3
 
-func _on_voltar_pressed():
-	_play_click()
-	get_tree().change_scene_to_file("res://scenes/LevelSelect.tscn")
-
 func _on_fase1_pressed():
 	_play_click()
 	get_tree().change_scene_to_file("res://scenes/fase_1_1.tscn")
@@ -66,3 +62,7 @@ func _on_fase3_pressed():
 	if unlocked_stage >= 3:
 		_play_click()
 		get_tree().change_scene_to_file("res://scenes/fase_1_3.tscn")
+
+func _on_voltar_button_pressed():
+	_play_click()
+	get_tree().change_scene_to_file("res://scenes/level_select.tscn")
