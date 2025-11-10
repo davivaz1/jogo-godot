@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://devum5bbbwbmt" path="res://assets/botao selecao nivel.png" id="5_8wtbf"]
 [ext_resource type="Texture2D" uid="uid://bukja641afvs0" path="res://assets/nivel 1.png" id="6_iygw3"]
 [ext_resource type="Texture2D" uid="uid://b5fpdubk5xyld" path="res://assets/lvl_desbloqueado.png" id="7_d3smy"]
-[ext_resource type="Texture2D" uid="uid://cy88ifpl8lv1x" path="res://assets/3 estrelas.png" id="7_gys30"]
+[ext_resource type="Texture2D" uid="uid://cy88ifpl8lv1x" path="res://assets/3estrelas.png" id="7_gys30"]
 [ext_resource type="Texture2D" uid="uid://cmcgxtovxdwwv" path="res://assets/nivel 2.png" id="8_jm20f"]
 [ext_resource type="Texture2D" uid="uid://bkm8kg8jb0id7" path="res://assets/lvl_trancado.png" id="9_54gt3"]
 [ext_resource type="Texture2D" uid="uid://bnmff6wd2s7ip" path="res://assets/nivel 3.png" id="10_kf23i"]

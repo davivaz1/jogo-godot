@@ -13,23 +13,23 @@ var selecionados = []
 
 # --- IMAGENS DAS ETAPAS ---
 var imagens = [
-	preload("res://imagens/solar_sol.png"),
-	preload("res://imagens/solar_placa.png"),
-	preload("res://imagens/solar_casa.png"),
-	preload("res://imagens/eolica_vento.png"),
-	preload("res://imagens/eolica_ventoinha.png"),
-	preload("res://imagens/eolica_casa.png"),
-	preload("res://imagens/hidreletrica_agua.png"),
-	preload("res://imagens/hidreletrica_usina.png"),
-	preload("res://imagens/hidreletrica_casa.png")
+	preload("res://assets/solar_sol.png"),
+	preload("res://assets/solar_placa.png"),
+	preload("res://assets/casa.png"),
+	preload("res://assets/eolica_vento.png"),
+	preload("res://assets/eolica_ventoinha.png"),
+	preload("res://assets/casa.png"),
+	preload("res://assets/hidreletrica_agua.png"),
+	preload("res://assets/hidreletrica_usina.png"),
+	preload("res://assets/casa.png")
 ]
 # we'll slice the above list per etapa to keep it compacto
 
 # --- IMAGEM PRINCIPAL DE CADA ETAPA ---
 var tipo_energia_imgs = [
-	preload("res://imagens/tipo_solar.png"),
-	preload("res://imagens/tipo_eolica.png"),
-	preload("res://imagens/tipo_hidreletrica.png")
+	preload("res://assets/tipo_solar.png"),
+	preload("res://assets/tipo_eolica.png"),
+	preload("res://assets/tipo_hidreletrica.png")
 ]
 
 # --- EXPLICAÇÕES DE CADA ETAPA ---
