@@ -65,4 +65,4 @@ func _on_fase_3_button_pressed():
 
 func _on_voltar_button_pressed():
 	_play_click()
-	get_tree().change_scene_to_file("res://scenes/level_select.tscn")
+	get_tree().change_scene_to_file("res://scenes/level_select_2.tscn")

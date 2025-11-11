@@ -16,26 +16,24 @@ extends Control
 
 var botoes_opcoes: Array
 
-const DESCRICAO_FASE = "Bem-vindo à Fase 2-1! Escolha a resposta correta!"
-
+# Dados do quiz (sem explicação por texto)
 const DADOS_QUIZ = [
-	"Qual dessas energias usa a energia solar para gerar eletricidade?", 
-	["Solar", "Vento", "Carvão"], 
+	"Qual dessas energias usa a energia solar para gerar eletricidade?",
+	["Solar", "Vento", "Carvão"],
 	0
 ]
 
 func _ready():
 	botoes_opcoes = [opcao_1, opcao_2, opcao_3]
-
 	_conectar_botoes()
-	_mostrar_explicacao()
+	_mostrar_explicacao_inicial()
 
+# Conecta os botões e sinais
 func _conectar_botoes():
 	explicacao_container.get_node("button_continuar").pressed.connect(_iniciar_quiz)
-	
 	button_restart.pressed.connect(_reiniciar_quiz)
 	button_continuar.pressed.connect(_finalizar_fase)
-	
+
 	for i in range(3):
 		botoes_opcoes[i].pressed.connect(Callable(self, "_on_opcao_pressed").bind(i))
 
@@ -43,25 +41,25 @@ func _play_click():
 	if audio and audio.stream:
 		audio.play()
 
-func _mostrar_explicacao():
+# Mostra a explicação visual (com PNG no editor)
+func _mostrar_explicacao_inicial():
 	quiz_container.visible = false
 	label_vitoria.visible = false
 	explicacao_container.visible = true
-	
-	explicacao_container.get_node("titulo_label").text = "Fase 02"
-	explicacao_container.get_node("texto_label").text = DESCRICAO_FASE
+	# Nenhum texto é configurado — a explicação é feita com imagens no editor
 
+# Inicia o quiz
 func _iniciar_quiz():
 	explicacao_container.visible = false
 	quiz_container.visible = true
 	_reiniciar_quiz()
 
+# Reinicia o quiz
 func _reiniciar_quiz():
 	var pergunta = DADOS_QUIZ[0]
 	var opcoes = DADOS_QUIZ[1]
-	
 	pergunta_label.text = pergunta
-	
+
 	for i in range(3):
 		botoes_opcoes[i].get_node("label").text = opcoes[i]
 		botoes_opcoes[i].disabled = false
@@ -70,41 +68,42 @@ func _reiniciar_quiz():
 	button_continuar.visible = false
 	button_restart.visible = false
 
+# Quando o jogador clica em uma opção
 func _on_opcao_pressed(indice_clicado: int):
 	for botao in botoes_opcoes:
 		botao.disabled = true
-		
+
 	_play_click()
 
 	var indice_correto = DADOS_QUIZ[2]
 	feedback_label.visible = true
 
 	if indice_clicado == indice_correto:
-		# Resposta Correta!
 		feedback_label.text = "Correto! Avance."
 		feedback_label.add_theme_color_override("font_color", Color(0, 1, 0))
 		button_continuar.visible = true
 		button_restart.visible = false
 	else:
-		# Resposta Incorreta
 		feedback_label.text = "Ops! Tente Novamente."
 		feedback_label.add_theme_color_override("font_color", Color(1, 0, 0))
 		button_restart.visible = true
 		button_continuar.visible = false
-		
+
+# Quando acerta e finaliza a fase
 func _finalizar_fase():
 	quiz_container.visible = false
 	label_vitoria.visible = true
 	label_vitoria.text = "VOCÊ CONCLUIU A FASE 2-2!"
-	
-	var next_stage_to_unlock = 3
-	_save_progress_and_return(next_stage_to_unlock) 
 
+	var next_stage_to_unlock = 3
+	_save_progress_and_return(next_stage_to_unlock)
+
+# Salva progresso e retorna para seleção de fases
 func _save_progress_and_return(next_stage: int):
 	var cfg = ConfigFile.new()
 	var save_path = "user://save_data.cfg"
 	var err = cfg.load(save_path)
-	
+
 	if err != OK:
 		cfg.set_value("level2", "unlocked_stage", next_stage)
 	else:

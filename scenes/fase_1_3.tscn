@@ -1,18 +1,23 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2swtptynlu7f"]
+[gd_scene load_steps=19 format=3 uid="uid://b2swtptynlu7f"]
 
 [ext_resource type="Script" uid="uid://8j06xcdxl1vg" path="res://scripts/fase_1_3.gd" id="1_nb2ip"]
 [ext_resource type="Texture2D" uid="uid://d4fb34s5wwsfu" path="res://assets/backgrounds/background.png" id="2_2hcfl"]
 [ext_resource type="Texture2D" uid="uid://bmxeirivvp3th" path="res://assets/btn.png" id="3_f7t8a"]
+[ext_resource type="Texture2D" uid="uid://clu80wwsuha86" path="res://assets/relacionar.png" id="3_fmo12"]
+[ext_resource type="Texture2D" uid="uid://n2nyl5aulady" path="res://assets/b.png" id="4_0w4uv"]
 [ext_resource type="Texture2D" uid="uid://cghsynxxxusv1" path="res://assets/sol.png" id="4_fmo12"]
+[ext_resource type="Texture2D" uid="uid://3e85sbmroqxa" path="res://assets/backgrounds/explicacao 13.png" id="5_420ku"]
 [ext_resource type="Texture2D" uid="uid://cic7dac3icmgf" path="res://assets/agua.png" id="5_686fl"]
 [ext_resource type="AudioStream" uid="uid://dlfim2ja4ogdy" path="res://assets/audios/Som-de-clique-de-mouse-Efeito-Sonoro.ogg" id="5_f58md"]
 [ext_resource type="Texture2D" uid="uid://bkpr8lbba1q1f" path="res://assets/vento.png" id="6_qguph"]
+[ext_resource type="Texture2D" uid="uid://b520fpjml6888" path="res://assets/continuar.png" id="7_v2sgr"]
 [ext_resource type="Texture2D" uid="uid://b55cjntjc6jop" path="res://assets/item_solar.png" id="7_wmn2r"]
 [ext_resource type="Texture2D" uid="uid://bdqmc4i055vu" path="res://assets/item_eolica.png" id="8_0w4uv"]
+[ext_resource type="Texture2D" uid="uid://cbi026dgfsllu" path="res://assets/fase3.png" id="8_4r1ie"]
 [ext_resource type="Texture2D" uid="uid://l42vu2hmdtw0" path="res://assets/item_hidreletrica.png" id="9_420ku"]
 [ext_resource type="Texture2D" uid="uid://hakiq5v7etll" path="res://assets/divisao.png" id="10_v2sgr"]
 [ext_resource type="Texture2D" uid="uid://bh836apgwxtye" path="res://assets/botao voltar.png" id="12_f7t8a"]
-[ext_resource type="Texture2D" uid="uid://bmcr6p6h54h5h" path="res://assets/proximo nivel.png" id="13_fmo12"]
+[ext_resource type="Texture2D" uid="uid://p4jhd6e5nf76" path="res://assets/recomecar.png" id="15_420ku"]
 
 [node name="Fase13" type="Control"]
 layout_mode = 3
@@ -33,72 +38,95 @@ grow_vertical = 2
 texture = ExtResource("2_2hcfl")
 
 [node name="explicacao_container" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="titulo_label" type="Label" parent="explicacao_container"]
+[node name="titulo_label" type="TextureRect" parent="explicacao_container"]
 layout_mode = 0
-offset_left = 784.0
-offset_top = 32.0
-offset_right = 1063.0
-offset_bottom = 67.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "ENERGIAS RENOVAVEIS"
+offset_left = 560.0
+offset_top = 10.0
+offset_right = 1110.0
+offset_bottom = 104.0
+texture = ExtResource("3_fmo12")
 
-[node name="texto_label" type="Label" parent="explicacao_container"]
+[node name="texto_label" type="TextureRect" parent="explicacao_container"]
 layout_mode = 0
-offset_left = 480.0
-offset_top = 328.0
-offset_right = 705.0
-offset_bottom = 363.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "TEXO EXPLICATIVO"
+offset_left = 90.0
+offset_top = 115.0
+offset_right = 1086.0
+offset_bottom = 497.0
+texture = ExtResource("4_0w4uv")
+
+[node name="TextureRect" type="TextureRect" parent="explicacao_container/texto_label"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 25.0
+offset_right = 958.0
+offset_bottom = 345.0
+texture = ExtResource("5_420ku")
 
 [node name="button_continuar" type="TextureButton" parent="explicacao_container"]
 layout_mode = 0
-offset_left = 456.0
-offset_top = 472.0
-offset_right = 714.0
-offset_bottom = 542.0
+offset_left = 462.0
+offset_top = 483.0
+offset_right = 720.0
+offset_bottom = 553.0
 texture_normal = ExtResource("3_f7t8a")
 
-[node name="explicacao_label" type="Label" parent="explicacao_container"]
+[node name="TextureRect" type="TextureRect" parent="explicacao_container/button_continuar"]
 layout_mode = 0
-offset_left = 112.0
-offset_top = 16.0
-offset_right = 246.0
-offset_bottom = 51.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "EXPLICACO"
+offset_left = 44.0
+offset_top = 7.0
+offset_right = 214.0
+offset_bottom = 47.0
+texture = ExtResource("7_v2sgr")
+
+[node name="explicacao_label" type="TextureRect" parent="explicacao_container"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 27.0
+offset_right = 306.0
+offset_bottom = 97.0
+texture = ExtResource("3_f7t8a")
+
+[node name="TextureRect" type="TextureRect" parent="explicacao_container/explicacao_label"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 7.0
+offset_right = 197.0
+offset_bottom = 47.0
+texture = ExtResource("8_4r1ie")
 
 [node name="exercicio_container" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="fase3_label" type="Label" parent="exercicio_container"]
+[node name="fase3_label" type="TextureRect" parent="exercicio_container"]
 layout_mode = 0
-offset_left = 88.0
-offset_top = 32.0
-offset_right = 181.0
-offset_bottom = 67.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "FASE 03"
+offset_left = 60.0
+offset_top = 37.0
+offset_right = 318.0
+offset_bottom = 107.0
+texture = ExtResource("3_f7t8a")
 
-[node name="instrucao_label" type="Label" parent="exercicio_container"]
+[node name="TextureRect" type="TextureRect" parent="exercicio_container/fase3_label"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 7.0
+offset_right = 198.0
+offset_bottom = 47.0
+texture = ExtResource("8_4r1ie")
+
+[node name="instrucao_label" type="TextureRect" parent="exercicio_container"]
 layout_mode = 0
 offset_left = 512.0
 offset_top = 24.0
 offset_right = 1102.0
 offset_bottom = 59.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "RELACIONE AS ENERGIAS COM SEUS ELEMNNTOS"
+texture = ExtResource("3_fmo12")
 
 [node name="area_fontes" type="Control" parent="exercicio_container"]
 anchors_preset = 0
@@ -169,9 +197,9 @@ stretch_mode = 0
 
 [node name="feedback_label" type="Label" parent="exercicio_container"]
 layout_mode = 0
-offset_left = 552.0
+offset_left = 480.0
 offset_top = 272.0
-offset_right = 592.0
+offset_right = 520.0
 offset_bottom = 295.0
 
 [node name="button_restart" type="TextureButton" parent="exercicio_container"]
@@ -182,13 +210,28 @@ offset_right = 706.0
 offset_bottom = 542.0
 texture_normal = ExtResource("3_f7t8a")
 
+[node name="TextureRect" type="TextureRect" parent="exercicio_container/button_restart"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("15_420ku")
+
 [node name="button_continuar" type="TextureButton" parent="exercicio_container"]
+visible = false
 layout_mode = 0
 offset_left = 448.0
 offset_top = 472.0
 offset_right = 706.0
 offset_bottom = 542.0
 texture_normal = ExtResource("3_f7t8a")
+
+[node name="TextureRect" type="TextureRect" parent="exercicio_container/button_continuar"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 7.0
+offset_right = 213.0
+offset_bottom = 47.0
+texture = ExtResource("7_v2sgr")
 
 [node name="divisoria" type="TextureRect" parent="exercicio_container"]
 layout_mode = 0
@@ -199,16 +242,14 @@ offset_bottom = 328.0
 texture = ExtResource("10_v2sgr")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = ExtResource("5_f58md")
 
 [node name="label_vitoria" type="Label" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 520.0
-offset_top = 312.0
-offset_right = 560.0
-offset_bottom = 335.0
+offset_left = 529.0
+offset_top = 308.0
+offset_right = 569.0
+offset_bottom = 331.0
 
 [node name="voltar_button" type="TextureButton" parent="."]
 layout_mode = 0
@@ -218,13 +259,4 @@ offset_right = 215.0
 offset_bottom = 629.0
 texture_normal = ExtResource("12_f7t8a")
 
-[node name="botao_proximo" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 986.0
-offset_top = 336.0
-offset_right = 1132.0
-offset_bottom = 376.0
-texture_normal = ExtResource("13_fmo12")
-
 [connection signal="pressed" from="voltar_button" to="." method="_on_votar_button_pressed"]
-[connection signal="pressed" from="botao_proximo" to="." method="_on_botao_proximo_pressed"]

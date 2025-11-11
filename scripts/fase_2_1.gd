@@ -16,8 +16,7 @@ extends Control
 
 var botoes_opcoes: Array
 
-const DESCRICAO_FASE = "Bem-vindo à Fase 2-1! Escolha a resposta correta!"
-
+#Dados do quiz (sem parte de explicação)
 const DADOS_QUIZ = [
 	"Qual dessas energias usa a força da água para gerar eletricidade?", 
 	["Eólica", "Hidrelétrica", "Carvão"], 
@@ -26,16 +25,15 @@ const DADOS_QUIZ = [
 
 func _ready():
 	botoes_opcoes = [opcao_1, opcao_2, opcao_3]
-	
 	_conectar_botoes()
-	_mostrar_explicacao()
+	_mostrar_explicacao_inicial()
 
+#Conecta os botões
 func _conectar_botoes():
 	explicacao_container.get_node("button_continuar").pressed.connect(_iniciar_quiz)
-	
 	button_restart.pressed.connect(_reiniciar_quiz)
 	button_continuar.pressed.connect(_finalizar_fase)
-	
+
 	for i in range(3):
 		botoes_opcoes[i].pressed.connect(Callable(self, "_on_opcao_pressed").bind(i))
 
@@ -43,19 +41,20 @@ func _play_click():
 	if audio and audio.stream:
 		audio.play()
 
-func _mostrar_explicacao():
+#Mostra apenas a explicação visual (via PNG)
+func _mostrar_explicacao_inicial():
 	quiz_container.visible = false
 	label_vitoria.visible = false
 	explicacao_container.visible = true
-	
-	explicacao_container.get_node("titulo_label").text = "Fase 01"
-	explicacao_container.get_node("texto_label").text = DESCRICAO_FASE
+	# Nenhum texto definido aqui — você controla via imagem no editor
 
+#Começa o quiz
 func _iniciar_quiz():
 	explicacao_container.visible = false
 	quiz_container.visible = true
 	_reiniciar_quiz()
 
+# Reinicia o quiz
 func _reiniciar_quiz():
 	var pergunta = DADOS_QUIZ[0]
 	var opcoes = DADOS_QUIZ[1]
@@ -70,6 +69,7 @@ func _reiniciar_quiz():
 	button_continuar.visible = false
 	button_restart.visible = false
 
+# Quando o jogador clica em uma opção
 func _on_opcao_pressed(indice_clicado: int):
 	for botao in botoes_opcoes:
 		botao.disabled = true
@@ -89,15 +89,17 @@ func _on_opcao_pressed(indice_clicado: int):
 		feedback_label.add_theme_color_override("font_color", Color(1, 0, 0))
 		button_restart.visible = true
 		button_continuar.visible = false
-		
+
+# Quando acerta e termina a fase
 func _finalizar_fase():
 	quiz_container.visible = false
 	label_vitoria.visible = true
 	label_vitoria.text = "VOCÊ CONCLUIU A FASE 2-1!"
 	
 	var next_stage_to_unlock = 2
-	_save_progress_and_return(next_stage_to_unlock) 
+	_save_progress_and_return(next_stage_to_unlock)
 
+# Salva o progresso e retorna
 func _save_progress_and_return(next_stage: int):
 	var cfg = ConfigFile.new()
 	var save_path = "user://save_data.cfg"

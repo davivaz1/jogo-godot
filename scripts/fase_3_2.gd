@@ -11,6 +11,11 @@ var etapa_atual = 0
 const TOTAL_ETAPAS = 2
 var selecionados = []
 
+var explicacoes_imgs = [
+	preload("res://assets/explicacao_petroleo.png"),
+	preload("res://assets/explicacao_gas.png")
+]
+
 # --- IMAGENS DAS ETAPAS ---
 var imagens = [
 	preload("res://assets/petroleo_maior.png"),
@@ -78,10 +83,9 @@ func _mostrar_explicacao_etapa():
 	exercicio_container.visible = false
 	label_vitoria.visible = false
 
-	var titulo = explicacao_etapa_container.get_node("titulo_label")
-	var texto = explicacao_etapa_container.get_node("texto_label")
-	titulo.text = "Etapa %d" % (etapa_atual + 1)
-	texto.text = explicacoes[etapa_atual]
+	# Atualiza a imagem da explicação
+	var img_node = explicacao_etapa_container.get_node("imagem_explicacao")
+	img_node.texture = explicacoes_imgs[etapa_atual]
 
 # --- INICIAR O EXERCÍCIO ---
 func _iniciar_exercicio():

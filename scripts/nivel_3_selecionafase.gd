@@ -46,7 +46,7 @@ func _abrir_fase(numero: int):
 		feedback_label.visible = false
 
 func _voltar_menu_niveis():
-	get_tree().change_scene_to_file("res://scenes/level_select.tscn")
+	get_tree().change_scene_to_file("res://scenes/level_select_3.tscn")
 
 func _load_progress():
 	var cfg = ConfigFile.new()

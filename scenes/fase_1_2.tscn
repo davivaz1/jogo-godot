@@ -1,16 +1,28 @@
-[gd_scene load_steps=12 format=3 uid="uid://of4egs3e7r77"]
+[gd_scene load_steps=24 format=3 uid="uid://of4egs3e7r77"]
 
 [ext_resource type="Script" uid="uid://yw8n4pr1epwl" path="res://scripts/fase_1_2.gd" id="1_151fi"]
 [ext_resource type="Texture2D" uid="uid://d4fb34s5wwsfu" path="res://assets/backgrounds/background.png" id="2_ugttr"]
+[ext_resource type="Texture2D" uid="uid://1syj7qhpr15r" path="res://assets/energia renovavel e n.png" id="3_lmo3q"]
 [ext_resource type="AudioStream" uid="uid://dlfim2ja4ogdy" path="res://assets/audios/Som-de-clique-de-mouse-Efeito-Sonoro.ogg" id="3_np2li"]
 [ext_resource type="Texture2D" uid="uid://bmxeirivvp3th" path="res://assets/btn.png" id="3_ugttr"]
 [ext_resource type="Texture2D" uid="uid://b55cjntjc6jop" path="res://assets/item_solar.png" id="4_18obp"]
+[ext_resource type="Texture2D" uid="uid://n2nyl5aulady" path="res://assets/b.png" id="4_p01p8"]
+[ext_resource type="Texture2D" uid="uid://cke12jsiafi1a" path="res://assets/explicacao 12.png" id="5_7ryjn"]
 [ext_resource type="Texture2D" uid="uid://l42vu2hmdtw0" path="res://assets/item_hidreletrica.png" id="5_xp35h"]
 [ext_resource type="Texture2D" uid="uid://bdqmc4i055vu" path="res://assets/item_eolica.png" id="6_0ib0h"]
+[ext_resource type="Texture2D" uid="uid://b520fpjml6888" path="res://assets/continuar.png" id="7_e6ybd"]
 [ext_resource type="Texture2D" uid="uid://du8236nmfhjrs" path="res://assets/item_nuclear.png" id="7_lrcup"]
+[ext_resource type="Texture2D" uid="uid://cbx21x5lk1f2n" path="res://assets/explicacao.png" id="8_04hbt"]
 [ext_resource type="Texture2D" uid="uid://br5yvo3ktyyvo" path="res://assets/item_termica.png" id="8_ooj27"]
+[ext_resource type="Texture2D" uid="uid://dw8fk5prrq6ll" path="res://assets/arraste.png" id="9_j6chi"]
 [ext_resource type="Texture2D" uid="uid://bulxux6am482v" path="res://assets/item_petroleo.png" id="9_pn0b4"]
 [ext_resource type="Texture2D" uid="uid://bh836apgwxtye" path="res://assets/botao voltar.png" id="11_xp35h"]
+[ext_resource type="Texture2D" uid="uid://0oqttuu50ge8" path="res://assets/energia renovavel.png" id="16_enhxg"]
+[ext_resource type="Texture2D" uid="uid://hakiq5v7etll" path="res://assets/divisao.png" id="17_6n500"]
+[ext_resource type="Texture2D" uid="uid://cuiktbrxp3nf2" path="res://assets/pontilhado pequeno.png" id="18_hscc2"]
+[ext_resource type="Texture2D" uid="uid://vcs5ahr5jxko" path="res://assets/nao renovavel.png" id="19_lr3ua"]
+[ext_resource type="Texture2D" uid="uid://p4jhd6e5nf76" path="res://assets/recomecar.png" id="20_mwpis"]
+[ext_resource type="Texture2D" uid="uid://dhvg0ov0ggibn" path="res://assets/fase2.png" id="21_mvu5a"]
 
 [node name="Fase12" type="Control"]
 layout_mode = 3
@@ -36,58 +48,70 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="titulo_label" type="Label" parent="explicacao_container"]
+[node name="titulo_label" type="TextureRect" parent="explicacao_container"]
 layout_mode = 0
-offset_left = 528.0
-offset_top = 24.0
-offset_right = 1157.0
-offset_bottom = 59.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "ENERGIAS RENOVAVEIS E NAO RENOVAVEIS IMAGEM"
+offset_left = 504.0
+offset_top = 19.0
+offset_right = 1133.0
+offset_bottom = 118.0
+texture = ExtResource("3_lmo3q")
 
-[node name="texto_label" type="Label" parent="explicacao_container"]
+[node name="texto_label" type="TextureRect" parent="explicacao_container"]
 layout_mode = 0
-offset_left = 472.0
-offset_top = 312.0
-offset_right = 711.0
-offset_bottom = 347.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "TEXTO EXPLICATIVO"
+offset_left = 68.0
+offset_top = 112.0
+offset_right = 1095.0
+offset_bottom = 548.0
+texture = ExtResource("4_p01p8")
+
+[node name="Explicacao12" type="Sprite2D" parent="explicacao_container/texto_label"]
+position = Vector2(508, 197)
+texture = ExtResource("5_7ryjn")
 
 [node name="button_continuar" type="TextureButton" parent="explicacao_container"]
 layout_mode = 0
-offset_left = 440.0
-offset_top = 480.0
-offset_right = 698.0
-offset_bottom = 550.0
+offset_left = 449.0
+offset_top = 520.0
+offset_right = 707.0
+offset_bottom = 590.0
 texture_normal = ExtResource("3_ugttr")
 
-[node name="Label" type="Label" parent="explicacao_container"]
+[node name="TextureRect" type="TextureRect" parent="explicacao_container/button_continuar"]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 16.0
-offset_right = 323.0
+offset_left = 49.0
+offset_top = 8.0
+offset_right = 219.0
+offset_bottom = 48.0
+texture = ExtResource("7_e6ybd")
+
+[node name="Label" type="TextureButton" parent="explicacao_container"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 32.0
+offset_right = 311.0
+offset_bottom = 102.0
+texture_normal = ExtResource("3_ugttr")
+
+[node name="TextureButton" type="TextureRect" parent="explicacao_container/Label"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 6.0
+offset_right = 244.0
 offset_bottom = 51.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "EXPLICACO IMAGEM"
+texture = ExtResource("8_04hbt")
 
 [node name="exercicio_container" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="instrucao_label" type="Label" parent="exercicio_container"]
+[node name="instrucao_label" type="TextureRect" parent="exercicio_container"]
 layout_mode = 0
-offset_left = 584.0
-offset_top = 8.0
-offset_right = 726.0
-offset_bottom = 43.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "INSTRUCAO"
+offset_left = 564.0
+offset_top = 12.0
+offset_right = 1114.0
+offset_bottom = 106.0
+texture = ExtResource("9_j6chi")
 
 [node name="area_itens" type="Control" parent="exercicio_container"]
 anchors_preset = 0
@@ -156,15 +180,28 @@ offset_top = 320.0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="label_renovavel" type="Label" parent="exercicio_container/area_renovavel"]
+[node name="label_renovavel" type="TextureRect" parent="exercicio_container/area_renovavel"]
 layout_mode = 0
-offset_left = 216.0
-offset_top = 16.0
-offset_right = 360.0
-offset_bottom = 51.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "RENOVAVEL"
+offset_left = 96.0
+offset_top = 1.0
+offset_right = 394.0
+offset_bottom = 36.0
+texture = ExtResource("16_enhxg")
+
+[node name="TextureRect" type="TextureRect" parent="exercicio_container/area_renovavel"]
+layout_mode = 0
+offset_left = -411.0
+offset_top = -22.0
+offset_right = 432.0
+offset_bottom = 18.0
+texture = ExtResource("17_6n500")
+
+[node name="TextureRect2" type="TextureRect" parent="exercicio_container/area_renovavel"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 11.0
+offset_bottom = 165.0
+texture = ExtResource("18_hscc2")
 
 [node name="area_nao_renovavel" type="TextureRect" parent="exercicio_container"]
 layout_mode = 0
@@ -172,50 +209,77 @@ offset_top = 320.0
 offset_right = 576.0
 offset_bottom = 648.0
 
-[node name="label_nao_renovavel" type="Label" parent="exercicio_container/area_nao_renovavel"]
+[node name="label_nao_renovavel" type="TextureRect" parent="exercicio_container/area_nao_renovavel"]
 layout_mode = 0
-offset_left = 176.0
-offset_top = 16.0
-offset_right = 383.0
-offset_bottom = 51.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "NAO RENOVAVEL"
+offset_left = 161.0
+offset_top = -6.0
+offset_right = 528.0
+offset_bottom = 29.0
+texture = ExtResource("19_lr3ua")
 
 [node name="feedback_label" type="Label" parent="exercicio_container"]
 layout_mode = 0
-offset_left = 520.0
-offset_top = 256.0
-offset_right = 560.0
-offset_bottom = 279.0
+offset_left = 545.0
+offset_top = 259.0
+offset_right = 585.0
+offset_bottom = 282.0
 
 [node name="button_restart" type="TextureButton" parent="exercicio_container"]
 layout_mode = 0
-offset_left = 448.0
-offset_top = 504.0
-offset_right = 706.0
-offset_bottom = 574.0
+offset_left = 458.0
+offset_top = 505.0
+offset_right = 716.0
+offset_bottom = 575.0
 texture_normal = ExtResource("3_ugttr")
+
+[node name="TextureRect" type="TextureRect" parent="exercicio_container/button_restart"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("20_mwpis")
 
 [node name="button_continuar" type="TextureButton" parent="exercicio_container"]
+visible = false
 layout_mode = 0
-offset_left = 448.0
-offset_top = 504.0
-offset_right = 706.0
-offset_bottom = 574.0
+offset_left = 459.0
+offset_top = 505.0
+offset_right = 717.0
+offset_bottom = 575.0
 texture_normal = ExtResource("3_ugttr")
 
+[node name="TextureRect" type="TextureRect" parent="exercicio_container/button_continuar"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 6.0
+offset_right = 217.0
+offset_bottom = 46.0
+texture = ExtResource("7_e6ybd")
+
+[node name="TextureRect" type="TextureRect" parent="exercicio_container"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 28.0
+offset_right = 281.0
+offset_bottom = 98.0
+texture = ExtResource("3_ugttr")
+
+[node name="TextureRect" type="TextureRect" parent="exercicio_container/TextureRect"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 9.0
+offset_right = 196.0
+offset_bottom = 49.0
+texture = ExtResource("21_mvu5a")
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = ExtResource("3_np2li")
 
 [node name="label_vitoria" type="Label" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 400.0
-offset_top = 208.0
-offset_right = 720.0
-offset_bottom = 424.0
+offset_left = 492.0
+offset_top = 199.0
+offset_right = 812.0
+offset_bottom = 415.0
 
 [node name="voltar_button" type="TextureButton" parent="."]
 layout_mode = 0

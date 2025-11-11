@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dntrc0j7te2ts"]
+[gd_scene load_steps=11 format=3 uid="uid://dntrc0j7te2ts"]
 
 [ext_resource type="Script" uid="uid://dw16kpxadyulj" path="res://scripts/nivel_3_selecionafase.gd" id="1_gj336"]
 [ext_resource type="Texture2D" uid="uid://d4fb34s5wwsfu" path="res://assets/backgrounds/background.png" id="2_d8qou"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cwqool7exwc4j" path="res://assets/1.png" id="6_hklda"]
 [ext_resource type="Texture2D" uid="uid://1uaphb5wwogg" path="res://assets/2.png" id="7_5m3ca"]
 [ext_resource type="Texture2D" uid="uid://ceo1myedte133" path="res://assets/3.png" id="8_nkt4n"]
+[ext_resource type="AudioStream" uid="uid://dlfim2ja4ogdy" path="res://assets/audios/Som-de-clique-de-mouse-Efeito-Sonoro.ogg" id="9_nlroa"]
+[ext_resource type="Texture2D" uid="uid://bh836apgwxtye" path="res://assets/botao voltar.png" id="9_top73"]
 
 [node name="Nivel3Selecionafase" type="Control"]
 layout_mode = 3
@@ -53,10 +55,10 @@ texture_normal = ExtResource("5_top73")
 
 [node name="txt" type="TextureRect" parent="button_fase_1"]
 layout_mode = 0
-offset_left = 64.0
+offset_left = 80.0
 offset_top = 24.0
-offset_right = 112.0
-offset_bottom = 64.0
+offset_right = 100.0
+offset_bottom = 66.0
 texture = ExtResource("6_hklda")
 
 [node name="button_fase_2" type="TextureButton" parent="."]
@@ -93,11 +95,11 @@ texture = ExtResource("8_nkt4n")
 
 [node name="button_voltar" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 864.0
-offset_top = 472.0
-offset_right = 1122.0
-offset_bottom = 542.0
-texture_normal = ExtResource("3_ciyfb")
+offset_left = 16.0
+offset_top = 576.0
+offset_right = 274.0
+offset_bottom = 646.0
+texture_normal = ExtResource("9_top73")
 
 [node name="feedback_label" type="Label" parent="."]
 layout_mode = 0
@@ -107,3 +109,4 @@ offset_right = 512.0
 offset_bottom = 456.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_nlroa")

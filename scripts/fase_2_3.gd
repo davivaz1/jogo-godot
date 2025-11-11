@@ -16,52 +16,60 @@ extends Control
 
 var botoes_opcoes: Array
 
-const DESCRICAO_FASE = "Bem-vindo à Fase 2-1! Escolha a resposta correta!"
-
+# Dados do quiz
 const DADOS_QUIZ = [
-	"Qual dessas energias usa a força do vento para gerar eletricidade?", 
-	["Solar", "Nuclear", "Eólica"], 
+	"Qual dessas energias usa a força do vento para gerar eletricidade?",
+	["Solar", "Nuclear", "Eólica"],
 	2
 ]
 
 func _ready():
 	botoes_opcoes = [opcao_1, opcao_2, opcao_3]
-	
 	_conectar_botoes()
-	_mostrar_explicacao()
+	_mostrar_explicacao_inicial()
 
+# ---------------------------------------------------------
+# Conexões de botões
+# ---------------------------------------------------------
 func _conectar_botoes():
 	explicacao_container.get_node("button_continuar").pressed.connect(_iniciar_quiz)
-	
 	button_restart.pressed.connect(_reiniciar_quiz)
 	button_continuar.pressed.connect(_finalizar_fase)
-	
 	for i in range(3):
 		botoes_opcoes[i].pressed.connect(Callable(self, "_on_opcao_pressed").bind(i))
 
+# ---------------------------------------------------------
+# Som de clique
+# ---------------------------------------------------------
 func _play_click():
 	if audio and audio.stream:
 		audio.play()
 
-func _mostrar_explicacao():
+# ---------------------------------------------------------
+# Exibição inicial (explicação por PNG no editor)
+# ---------------------------------------------------------
+func _mostrar_explicacao_inicial():
 	quiz_container.visible = false
 	label_vitoria.visible = false
 	explicacao_container.visible = true
-	
-	explicacao_container.get_node("titulo_label").text = "Fase 03"
-	explicacao_container.get_node("texto_label").text = DESCRICAO_FASE
+	# Nenhum texto definido aqui — apenas sua imagem no editor
 
+# ---------------------------------------------------------
+# Início do quiz
+# ---------------------------------------------------------
 func _iniciar_quiz():
 	explicacao_container.visible = false
 	quiz_container.visible = true
 	_reiniciar_quiz()
 
+# ---------------------------------------------------------
+# Reinicia o quiz
+# ---------------------------------------------------------
 func _reiniciar_quiz():
 	var pergunta = DADOS_QUIZ[0]
 	var opcoes = DADOS_QUIZ[1]
-	
 	pergunta_label.text = pergunta
-	
+
 	for i in range(3):
 		botoes_opcoes[i].get_node("label").text = opcoes[i]
 		botoes_opcoes[i].disabled = false
@@ -70,10 +78,13 @@ func _reiniciar_quiz():
 	button_continuar.visible = false
 	button_restart.visible = false
 
+# ---------------------------------------------------------
+# Quando o jogador escolhe uma opção
+# ---------------------------------------------------------
 func _on_opcao_pressed(indice_clicado: int):
 	for botao in botoes_opcoes:
 		botao.disabled = true
-		
+
 	_play_click()
 
 	var indice_correto = DADOS_QUIZ[2]
@@ -89,10 +100,14 @@ func _on_opcao_pressed(indice_clicado: int):
 		feedback_label.add_theme_color_override("font_color", Color(1, 0, 0))
 		button_restart.visible = true
 		button_continuar.visible = false
-		
+
+# ---------------------------------------------------------
+# Finaliza a fase e avança
+# ---------------------------------------------------------
 func _finalizar_fase():
 	quiz_container.visible = false
 	label_vitoria.visible = true
 	label_vitoria.text = "VOCÊ CONCLUIU A FASE 2-3!"
+
 	await get_tree().create_timer(1.5).timeout
 	get_tree().change_scene_to_file("res://scenes/level_select_3.tscn")

@@ -11,6 +11,11 @@ var etapa_atual = 0
 const TOTAL_ETAPAS = 3
 var selecionados = []
 
+var imagens_explicacao = [
+	preload("res://assets/explicacao_solar.png"),
+	preload("res://assets/explicacao_eolica.png"),
+	preload("res://assets/explicacao_hidreletrica.png")
+]
 # --- IMAGENS DAS ETAPAS ---
 var imagens = [
 	preload("res://assets/solar_sol.png"),
@@ -86,10 +91,10 @@ func _mostrar_explicacao_etapa():
 	exercicio_container.visible = false
 	label_vitoria.visible = false
 
-	var titulo = explicacao_etapa_container.get_node("titulo_label")
-	var texto = explicacao_etapa_container.get_node("texto_label")
-	titulo.text = "Etapa %d" % (etapa_atual + 1)
-	texto.text = explicacoes[etapa_atual]
+	# Mostra a imagem de explicação correta
+	var imagem_explicacao = explicacao_etapa_container.get_node("imagem_etapa")
+	if imagem_explicacao:
+		imagem_explicacao.texture = imagens_explicacao[etapa_atual]
 
 # --- INICIAR O EXERCÍCIO ---
 func _iniciar_exercicio():

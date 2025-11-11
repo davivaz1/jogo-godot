@@ -96,10 +96,10 @@ texture = ExtResource("8_og3wq")
 
 [node name="desbloqueado2" type="TextureRect" parent="HBoxContainer/Nivel2_Button2"]
 layout_mode = 0
-offset_left = 120.0
-offset_top = 52.0
-offset_right = 204.0
-offset_bottom = 138.0
+offset_left = 29.0
+offset_top = -40.0
+offset_right = 157.0
+offset_bottom = 6.0
 texture = ExtResource("7_nc4wv")
 
 [node name="Nivel3_Button3" type="TextureButton" parent="HBoxContainer"]
@@ -116,9 +116,10 @@ texture = ExtResource("10_4d17k")
 
 [node name="trancado" type="TextureRect" parent="HBoxContainer/Nivel3_Button3"]
 layout_mode = 0
-offset_left = 16.0
-offset_right = 168.0
-offset_bottom = 112.0
+offset_left = 117.0
+offset_top = 52.0
+offset_right = 201.0
+offset_bottom = 138.0
 texture = ExtResource("9_dro5j")
 
 [node name="button_config" type="TextureButton" parent="."]
