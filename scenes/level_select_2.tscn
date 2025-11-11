@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://c02al5b43m2q8"]
 
-[ext_resource type="Script" path="res://scripts/level_select_2.gd" id="1_gys30"]
+[ext_resource type="Script" uid="uid://cpt0jwys5u8kd" path="res://scripts/level_select_2.gd" id="1_gys30"]
 [ext_resource type="Texture2D" uid="uid://dnjia0bbruoni" path="res://assets/backgrounds/fundo jogo.png" id="2_gys30"]
 [ext_resource type="Texture2D" uid="uid://bmxeirivvp3th" path="res://assets/btn.png" id="3_gvtso"]
 [ext_resource type="Texture2D" uid="uid://do7dcedt2na8w" path="res://assets/etapas jogo.png" id="4_2qmeb"]
@@ -95,7 +95,7 @@ offset_right = 164.0
 offset_bottom = 72.0
 texture = ExtResource("8_jm20f")
 
-[node name="trancado" type="TextureRect" parent="HBoxContainer/Nivel2_Button2"]
+[node name="desbloqueado2" type="TextureRect" parent="HBoxContainer/Nivel2_Button2"]
 layout_mode = 0
 offset_left = 120.0
 offset_top = 52.0
@@ -142,5 +142,7 @@ texture_normal = ExtResource("12_72csf")
 stream = ExtResource("13_yj723")
 
 [connection signal="pressed" from="HBoxContainer/Nivel1_Button" to="." method="_on_nivel_1_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Nivel2_Button2" to="." method="_on_nivel_2_button_2_pressed"]
+[connection signal="pressed" from="HBoxContainer/Nivel3_Button3" to="." method="_on_nivel_3_button_3_pressed"]
 [connection signal="pressed" from="button_config" to="." method="_on_button_config_pressed"]
 [connection signal="pressed" from="voltar_button" to="." method="_on_voltar_button_pressed"]

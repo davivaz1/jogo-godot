@@ -140,5 +140,7 @@ texture_normal = ExtResource("10_htctk")
 stream = ExtResource("12_s6tf7")
 
 [connection signal="pressed" from="HBoxContainer/Nivel1_Button" to="." method="_on_nivel_1_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Nivel2_Button2" to="." method="_on_nivel_2_button_2_pressed"]
+[connection signal="pressed" from="HBoxContainer/Nivel3_Button3" to="." method="_on_nivel_3_button_3_pressed"]
 [connection signal="pressed" from="button_config" to="." method="_on_button_config_pressed"]
 [connection signal="pressed" from="voltar_button" to="." method="_on_voltar_button_pressed"]

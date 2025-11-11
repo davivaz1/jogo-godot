@@ -30,15 +30,12 @@ func _on_nivel_1_button_pressed() -> void:
 	_load_level(1)
 
 # --- Botão Nível 2 ---
-func _on_nivel_2_button_pressed() -> void:
+func _on_nivel_2_button_2_pressed() -> void:
 	_play_click()
-	if unlocked_levels >= 2:
-		_load_level(2)
-	else:
-		_show_message("Complete o Nível 1 para desbloquear!")
+	_load_level(2)
 
 # --- Botão Nível 3 ---
-func _on_nivel_3_button_pressed() -> void:
+func _on_nivel_3_button_3_pressed() -> void:
 	_play_click()
 	if unlocked_levels >= 3:
 		_load_level(3)
@@ -81,21 +78,13 @@ func _load_progress():
 	var cfg = ConfigFile.new()
 	var err = cfg.load(save_path)
 	if err == OK:
-		unlocked_levels = cfg.get_value("progress", "unlocked_levels", 1)
+		unlocked_levels = cfg.get_value("progress", "unlocked_levels", 2) #
 
 # --- Atualiza visual (trancado/desbloqueado) ---
 func _update_level_buttons():
-	# Nível 1 sempre ativo
+
 	nivel1_btn.modulate = Color.WHITE
-
-	# Nível 2
-	if unlocked_levels >= 2:
-		nivel2_btn.modulate = Color.WHITE
-		nivel2_btn.get_node("trancado").visible = false
-	else:
-		nivel2_btn.modulate = Color(0.5, 0.5, 0.5)
-		nivel2_btn.get_node("trancado").visible = true
-
+	nivel2_btn.modulate = Color.WHITE
 	# Nível 3
 	if unlocked_levels >= 3:
 		nivel3_btn.modulate = Color.WHITE

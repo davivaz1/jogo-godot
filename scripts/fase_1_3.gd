@@ -134,12 +134,15 @@ func _finalizar_fase():
 func _salvar_progresso():
 	var cfg = ConfigFile.new()
 	var save_path = "user://save_data.cfg"
-	var err = cfg.load(save_path)
-	if err != OK:
-		cfg.set_value("level3", "completed", true)
-	else:
-		cfg.set_value("level3", "completed", true)
-	cfg.save(save_path)
+	
+	var proximo_nivel_a_desbloquear = 2
+	
+	var unlocked_levels_salvo = cfg.get_value("progress", "unlocked_levels", 2)
+	if proximo_nivel_a_desbloquear > unlocked_levels_salvo:
+		cfg.set_value("progress", "unlocked_levels", proximo_nivel_a_desbloquear)
+		cfg.save(save_path)
+
+	get_tree().change_scene_to_file("res://scenes/level_select.tscn") # Exemplo
 
 
 # --- BOTÃO VOLTAR ---

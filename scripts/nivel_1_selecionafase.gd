@@ -66,3 +66,12 @@ func _on_fase3_pressed():
 func _on_voltar_button_pressed():
 	_play_click()
 	get_tree().change_scene_to_file("res://scenes/level_select.tscn")
+
+
+func _on_fase_2_button_pressed() -> void:
+	_play_click()
+	get_tree().change_scene_to_file("res://scenes/fase_1_2.tscn")
+
+
+func _on_fase_1_button_pressed() -> void:
+	pass # Replace with function body.

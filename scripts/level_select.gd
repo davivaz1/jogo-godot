@@ -28,17 +28,15 @@ func _on_voltar_button_pressed() -> void:
 func _on_nivel_1_button_pressed() -> void:
 	_play_click()
 	_load_level(1)
-
-# --- Botão Nível 2 ---
-func _on_nivel_2_button_pressed() -> void:
+	
+func _on_nivel_2_button_2_pressed() -> void:
 	_play_click()
 	if unlocked_levels >= 2:
 		_load_level(2)
 	else:
 		_show_message("Complete o Nível 1 para desbloquear!")
 
-# --- Botão Nível 3 ---
-func _on_nivel_3_button_pressed() -> void:
+func _on_nivel_3_button_3_pressed() -> void:
 	_play_click()
 	if unlocked_levels >= 3:
 		_load_level(3)
@@ -53,10 +51,7 @@ func _on_button_config_pressed():
 # --- Utilidades ---
 func _load_level(num):
 	var path = "res://scenes/nivel_%d_selecionafase.tscn" % num
-	if ResourceLoader.exists(path):
-		get_tree().change_scene_to_file(path)
-	else:
-		_show_message("Essa fase ainda não foi criada!")
+	get_tree().change_scene_to_file(path)
 
 func _play_click():
 	if click_sound and click_sound.stream:
@@ -140,7 +135,3 @@ func _on_volume_changed(value):
 	# Converter valor linear para decibéis
 	var db = linear_to_db(value)
 	AudioServer.set_bus_volume_db(0, db)
-
-
-func _on_nivel_2_button_2_pressed() -> void:
-	pass # Replace with function body.

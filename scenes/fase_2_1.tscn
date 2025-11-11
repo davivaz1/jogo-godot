@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b5a73opvaoc6t"]
 
-[ext_resource type="Script" uid="uid://ba3lu1wlqqxu8" path="res://fase_21.gd" id="1_y00ys"]
+[ext_resource type="Script" uid="uid://ba3lu1wlqqxu8" path="res://scripts/fase_2_1.gd" id="1_y00ys"]
 [ext_resource type="Texture2D" uid="uid://dnjia0bbruoni" path="res://assets/backgrounds/fundo jogo.png" id="2_fa6bd"]
 [ext_resource type="Texture2D" uid="uid://bmxeirivvp3th" path="res://assets/btn.png" id="3_dv5hw"]
 [ext_resource type="Texture2D" uid="uid://cx14roj74te3j" path="res://assets/fase1.png" id="4_y00ys"]

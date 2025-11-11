@@ -1,24 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3oldnc4ased2"]
+[gd_scene load_steps=10 format=3 uid="uid://b3oldnc4ased2"]
 
-[ext_resource type="Script" uid="uid://g1rpc4vwx60h" path="res://scripts/nivel_1_selecionafase.gd" id="1_h4ryr"]
 [ext_resource type="Texture2D" uid="uid://ddmds6acxyhcu" path="res://assets/fundo jogo.png" id="2_slk7i"]
 [ext_resource type="Texture2D" uid="uid://bmxeirivvp3th" path="res://assets/btn.png" id="3_0y3d0"]
-[ext_resource type="Texture2D" uid="uid://cmcgxtovxdwwv" path="res://assets/nivel 2.png" id="4_dgejr"]
-[ext_resource type="Script" uid="uid://3aodw5nkyihv" path="res://nivel_2_selecionafase.gd" id="5_5qkou"]
+[ext_resource type="Script" uid="uid://de884tubydttu" path="res://scripts/nivel_2_selecionafase.gd" id="5_5qkou"]
 [ext_resource type="Texture2D" uid="uid://devum5bbbwbmt" path="res://assets/botao selecao nivel.png" id="6_0hftj"]
 [ext_resource type="Texture2D" uid="uid://cwqool7exwc4j" path="res://assets/1.png" id="7_ad7k6"]
 [ext_resource type="Texture2D" uid="uid://1uaphb5wwogg" path="res://assets/2.png" id="8_v0574"]
 [ext_resource type="Texture2D" uid="uid://ceo1myedte133" path="res://assets/3.png" id="9_agcuq"]
+[ext_resource type="Texture2D" uid="uid://cn5ajnsyadxas" path="res://assets/nivel2.png" id="9_m8tlf"]
 [ext_resource type="Texture2D" uid="uid://bh836apgwxtye" path="res://assets/botao voltar.png" id="10_2o75a"]
 
-[node name="Nivel2" type="Control"]
+[node name="Nivel2SelecionaFase" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_h4ryr")
+script = ExtResource("5_5qkou")
 
 [node name="fundo" type="TextureRect" parent="."]
 layout_mode = 1
@@ -28,23 +27,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_slk7i")
-
-[node name="Nivel1_png" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 56.0
-offset_right = 706.0
-offset_bottom = 126.0
-texture = ExtResource("3_0y3d0")
-
-[node name="txt" type="TextureRect" parent="Nivel1_png"]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 8.0
-offset_right = 194.0
-offset_bottom = 48.0
-texture = ExtResource("4_dgejr")
-script = ExtResource("5_5qkou")
 
 [node name="Fase1_Button" type="TextureButton" parent="."]
 layout_mode = 0
@@ -105,4 +87,23 @@ offset_right = 208.0
 offset_bottom = 626.0
 texture_normal = ExtResource("10_2o75a")
 
+[node name="Nivel2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 82.0
+offset_right = 695.0
+offset_bottom = 152.0
+texture = ExtResource("3_0y3d0")
+
+[node name="txt" type="TextureRect" parent="Nivel2"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 5.0
+offset_right = 228.0
+offset_bottom = 51.0
+texture = ExtResource("9_m8tlf")
+
+[connection signal="pressed" from="Fase1_Button" to="." method="_on_fase_1_button_pressed"]
+[connection signal="pressed" from="Fase2_Button" to="." method="_on_fase_2_button_pressed"]
+[connection signal="pressed" from="Fase3_Button" to="." method="_on_fase_3_button_pressed"]
 [connection signal="pressed" from="voltar_button" to="." method="_on_voltar_button_pressed"]

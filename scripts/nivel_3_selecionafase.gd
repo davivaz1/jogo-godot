@@ -6,7 +6,6 @@ extends Control
 var unlocked_stage = 1  # por padrão só a primeira fase está liberada
 
 func _ready():
-	# Carrega progresso salvo
 	_load_progress()
 
 	# Conecta os botões
