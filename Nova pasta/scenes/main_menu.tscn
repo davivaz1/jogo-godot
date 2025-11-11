@@ -29,9 +29,9 @@ texture = ExtResource("2_wu84c")
 
 [node name="titulo" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 464.0
+offset_left = 473.0
 offset_top = 76.0
-offset_right = 668.0
+offset_right = 677.0
 offset_bottom = 122.0
 texture = ExtResource("3_8ln24")
 

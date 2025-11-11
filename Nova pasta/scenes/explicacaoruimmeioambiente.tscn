@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cn746vru2hdy0"]
+
+[ext_resource type="Script" uid="uid://ypm1rnosuwkq" path="res://explicacao_21.gd" id="1_1frnn"]
+[ext_resource type="Texture2D" uid="uid://ddmds6acxyhcu" path="res://assets/fundo jogo.png" id="2_5q200"]
+[ext_resource type="Texture2D" uid="uid://n2nyl5aulady" path="res://assets/b.png" id="3_yuw73"]
+[ext_resource type="Texture2D" uid="uid://bmxeirivvp3th" path="res://assets/btn.png" id="4_gqkfa"]
+[ext_resource type="Texture2D" uid="uid://cbx21x5lk1f2n" path="res://assets/explicacao.png" id="5_lvufa"]
+[ext_resource type="Texture2D" uid="uid://b520fpjml6888" path="res://assets/continuar.png" id="6_c26tu"]
+[ext_resource type="Texture2D" uid="uid://c6gpy8f65thqu" path="res://assets/energia q poluem.png" id="7_ynn0f"]
+
+[node name="Explicacaoruimmeioambiente" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1frnn")
+
+[node name="fundo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_5q200")
+
+[node name="explicacao" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 91.0
+offset_right = 831.0
+offset_bottom = 400.0
+texture = ExtResource("3_yuw73")
+
+[node name="Btn" type="Sprite2D" parent="."]
+position = Vector2(149, 55)
+texture = ExtResource("4_gqkfa")
+
+[node name="Explicacao" type="Sprite2D" parent="."]
+position = Vector2(150, 50)
+texture = ExtResource("5_lvufa")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 414.0
+offset_right = 564.0
+offset_bottom = 484.0
+texture_normal = ExtResource("4_gqkfa")
+
+[node name="TextureRect" type="TextureRect" parent="TextureButton"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 8.0
+offset_right = 212.0
+offset_bottom = 48.0
+texture = ExtResource("6_c26tu")
+
+[node name="EnergiaQPoluem" type="Sprite2D" parent="."]
+position = Vector2(437, 239)
+scale = Vector2(0.5183974, 1.1373627)
+texture = ExtResource("7_ynn0f")

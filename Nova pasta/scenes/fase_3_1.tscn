@@ -1,0 +1,186 @@
+[gd_scene load_steps=6 format=3 uid="uid://csqepuafm0fag"]
+
+[ext_resource type="Script" uid="uid://bvd2mtcjor4bb" path="res://scripts/fase_3_1.gd" id="1_sucmx"]
+[ext_resource type="Texture2D" uid="uid://d4fb34s5wwsfu" path="res://assets/backgrounds/background.png" id="2_o2ejq"]
+[ext_resource type="Texture2D" uid="uid://bmxeirivvp3th" path="res://assets/btn.png" id="3_6hvsu"]
+[ext_resource type="Texture2D" uid="uid://cbx21x5lk1f2n" path="res://assets/explicacao.png" id="4_o2ejq"]
+[ext_resource type="AudioStream" uid="uid://dlfim2ja4ogdy" path="res://assets/audios/Som-de-clique-de-mouse-Efeito-Sonoro.ogg" id="4_x326k"]
+
+[node name="Fase31" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sucmx")
+
+[node name="fundo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_o2ejq")
+
+[node name="explicacao_inicial_container" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="explicacao" type="TextureRect" parent="explicacao_inicial_container"]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 32.0
+offset_right = 1090.0
+offset_bottom = 102.0
+texture = ExtResource("3_6hvsu")
+
+[node name="TextureRect" type="TextureRect" parent="explicacao_inicial_container/explicacao"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 297.0
+offset_bottom = 53.0
+texture = ExtResource("4_o2ejq")
+
+[node name="texto_label" type="Label" parent="explicacao_inicial_container"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 264.0
+offset_right = 739.0
+offset_bottom = 299.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "TEXTO EXPLICATIVO"
+
+[node name="button_continuar" type="TextureButton" parent="explicacao_inicial_container"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 480.0
+offset_right = 706.0
+offset_bottom = 550.0
+texture_normal = ExtResource("3_6hvsu")
+
+[node name="fase1_label" type="Label" parent="explicacao_inicial_container"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 56.0
+offset_right = 141.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "FASE 01"
+
+[node name="explicacao_etapa_container" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="button_iniciar" type="TextureButton" parent="explicacao_etapa_container"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 480.0
+offset_right = 706.0
+offset_bottom = 550.0
+texture_normal = ExtResource("3_6hvsu")
+
+[node name="fase1_label" type="Label" parent="explicacao_etapa_container"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 56.0
+offset_right = 141.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "FASE 01"
+
+[node name="titulo_label" type="Label" parent="explicacao_etapa_container"]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 32.0
+offset_right = 846.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "EXPLICACOA"
+
+[node name="texto_label" type="Label" parent="explicacao_etapa_container"]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 248.0
+offset_right = 448.0
+offset_bottom = 271.0
+
+[node name="exercicio_container" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="tipo_energia_img" type="TextureRect" parent="exercicio_container"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 24.0
+offset_right = 738.0
+offset_bottom = 94.0
+
+[node name="itens_container" type="Control" parent="exercicio_container"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="item_1" type="TextureButton" parent="exercicio_container/itens_container"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 248.0
+offset_right = 184.0
+offset_bottom = 288.0
+
+[node name="item_2" type="TextureButton" parent="exercicio_container/itens_container"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 376.0
+offset_right = 520.0
+offset_bottom = 416.0
+
+[node name="item_3" type="TextureButton" parent="exercicio_container/itens_container"]
+layout_mode = 0
+offset_left = 752.0
+offset_top = 448.0
+offset_right = 792.0
+offset_bottom = 488.0
+
+[node name="feedback_label" type="Label" parent="exercicio_container"]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 232.0
+offset_right = 600.0
+offset_bottom = 255.0
+
+[node name="button_restart" type="TextureButton" parent="exercicio_container"]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 456.0
+offset_right = 1122.0
+offset_bottom = 526.0
+texture_normal = ExtResource("3_6hvsu")
+
+[node name="button_continuar" type="TextureButton" parent="exercicio_container"]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 456.0
+offset_right = 1122.0
+offset_bottom = 526.0
+texture_normal = ExtResource("3_6hvsu")
+
+[node name="label_vitoria" type="Label" parent="."]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 288.0
+offset_right = 576.0
+offset_bottom = 311.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_x326k")

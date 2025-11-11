@@ -175,4 +175,3 @@ func _on_volume_changed(value):
 
 func _on_button_creditos_pressed() -> void:
 	get_tree().change_scene_to_file("res://main_menu.tscn")
-	
