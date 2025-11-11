@@ -1,0 +1,168 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg4jr1g2aaru1"]
+
+[ext_resource type="Script" uid="uid://pbopxreve75n" path="res://scripts/fase_32.gd" id="1_ev2hf"]
+[ext_resource type="Texture2D" uid="uid://d4fb34s5wwsfu" path="res://assets/backgrounds/background.png" id="2_i87bx"]
+[ext_resource type="Texture2D" uid="uid://b520fpjml6888" path="res://assets/continuar.png" id="3_mc6qd"]
+[ext_resource type="Texture2D" uid="uid://p4jhd6e5nf76" path="res://assets/recomecar.png" id="4_yavsw"]
+
+[node name="Fase32" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ev2hf")
+metadata/_edit_horizontal_guides_ = [-120.0]
+
+[node name="fundo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_i87bx")
+
+[node name="explicacao_inicial_container" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="explicacao" type="TextureRect" parent="explicacao_inicial_container"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="explicacao_inicial_container/explicacao"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="button_continuar" type="TextureButton" parent="explicacao_inicial_container"]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 432.0
+offset_right = 674.0
+offset_bottom = 472.0
+texture_normal = ExtResource("3_mc6qd")
+
+[node name="texto_label" type="Label" parent="explicacao_inicial_container"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 32.0
+offset_right = 160.0
+offset_bottom = 55.0
+
+[node name="fase1_label" type="Label" parent="explicacao_inicial_container"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 40.0
+offset_right = 208.0
+offset_bottom = 63.0
+
+[node name="explicacao_etapa_container" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 120.0
+offset_top = 32.0
+offset_right = 160.0
+offset_bottom = 72.0
+
+[node name="button_iniciar" type="TextureButton" parent="explicacao_etapa_container"]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 392.0
+offset_right = 562.0
+offset_bottom = 424.0
+texture_normal = ExtResource("3_mc6qd")
+
+[node name="fase1_label" type="Label" parent="explicacao_etapa_container"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="titulo_label" type="Label" parent="explicacao_etapa_container"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = 64.0
+offset_right = -16.0
+offset_bottom = 87.0
+
+[node name="texto_label" type="Label" parent="explicacao_etapa_container"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 56.0
+offset_right = 240.0
+offset_bottom = 79.0
+
+[node name="exercicio_container" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="tipo_energia_img" type="TextureRect" parent="exercicio_container"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 40.0
+offset_right = 336.0
+offset_bottom = 80.0
+
+[node name="itens_container" type="Control" parent="exercicio_container"]
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 96.0
+offset_right = 72.0
+offset_bottom = 120.0
+
+[node name="item_1" type="TextureButton" parent="exercicio_container/itens_container"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 352.0
+offset_right = 136.0
+offset_bottom = 375.0
+
+[node name="item_2" type="TextureButton" parent="exercicio_container/itens_container"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 360.0
+offset_right = 520.0
+offset_bottom = 383.0
+
+[node name="item_3" type="TextureButton" parent="exercicio_container/itens_container"]
+layout_mode = 0
+offset_left = 936.0
+offset_top = 352.0
+offset_right = 976.0
+offset_bottom = 375.0
+
+[node name="feedback_label" type="Label" parent="exercicio_container"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 40.0
+offset_right = 232.0
+offset_bottom = 63.0
+
+[node name="button_restart" type="TextureButton" parent="exercicio_container"]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 408.0
+offset_right = 712.0
+offset_bottom = 464.0
+texture_normal = ExtResource("4_yavsw")
+
+[node name="button_continuar" type="TextureButton" parent="exercicio_container"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 424.0
+offset_right = 682.0
+offset_bottom = 464.0
+texture_normal = ExtResource("3_mc6qd")
+
+[node name="label_vitoria" type="Label" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 144.0
+offset_right = 128.0
+offset_bottom = 167.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

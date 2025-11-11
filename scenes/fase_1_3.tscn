@@ -210,7 +210,7 @@ offset_top = 312.0
 offset_right = 560.0
 offset_bottom = 335.0
 
-[node name="votar_button" type="TextureButton" parent="."]
+[node name="voltar_button" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 19.0
 offset_top = 583.0
@@ -226,5 +226,5 @@ offset_right = 1132.0
 offset_bottom = 376.0
 texture_normal = ExtResource("13_fmo12")
 
-[connection signal="pressed" from="votar_button" to="." method="_on_votar_button_pressed"]
+[connection signal="pressed" from="voltar_button" to="." method="_on_votar_button_pressed"]
 [connection signal="pressed" from="botao_proximo" to="." method="_on_botao_proximo_pressed"]

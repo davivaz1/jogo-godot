@@ -142,7 +142,7 @@ func _salvar_progresso():
 		cfg.set_value("progress", "unlocked_levels", proximo_nivel_a_desbloquear)
 		cfg.save(save_path)
 
-	get_tree().change_scene_to_file("res://scenes/level_select.tscn") # Exemplo
+	get_tree().change_scene_to_file("res://scenes/level_select_2.tscn") # Exemplo
 
 
 # --- BOTÃO VOLTAR ---
