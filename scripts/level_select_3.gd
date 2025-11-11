@@ -6,7 +6,7 @@ extends Control
 @onready var nivel3_btn = $HBoxContainer/Nivel3_Button3
 
 var save_path = "user://save_data.cfg"
-var unlocked_levels = 3  # padrão: apenas o nível 1 está liberado
+var unlocked_levels = 2  # padrão: apenas o nível 1 está liberado
 
 func _ready() -> void:
 	# Carrega progresso salvo
@@ -37,7 +37,10 @@ func _on_nivel_2_button_2_pressed() -> void:
 # --- Botão Nível 3 ---
 func _on_nivel_3_button_3_pressed() -> void:
 	_play_click()
-	_load_level(3)
+	if unlocked_levels >= 3:
+		_load_level(3)
+	else:
+		_show_message("Complete o Nível 2 para desbloquear!")
 
 # --- Abrir Configurações ---
 func _on_button_config_pressed():
@@ -82,7 +85,13 @@ func _update_level_buttons():
 
 	nivel1_btn.modulate = Color.WHITE
 	nivel2_btn.modulate = Color.WHITE
-	nivel3_btn.modulate = Color.WHITE
+	# Nível 3
+	if unlocked_levels >= 3:
+		nivel3_btn.modulate = Color.WHITE
+		nivel3_btn.get_node("trancado2").visible = false
+	else:
+		nivel3_btn.modulate = Color(0.5, 0.5, 0.5)
+		nivel3_btn.get_node("trancado2").visible = true
 
 func _show_volume_popup():
 	# Cria um popup simples com um controle de volume

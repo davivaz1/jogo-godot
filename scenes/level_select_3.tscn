@@ -1,0 +1,147 @@
+[gd_scene load_steps=14 format=3 uid="uid://djrf57y45mnor"]
+
+[ext_resource type="Script" uid="uid://cpt0jwys5u8kd" path="res://scripts/level_select_2.gd" id="1_nhd7u"]
+[ext_resource type="Texture2D" uid="uid://dnjia0bbruoni" path="res://assets/backgrounds/fundo jogo.png" id="2_7xiq7"]
+[ext_resource type="Texture2D" uid="uid://bmxeirivvp3th" path="res://assets/btn.png" id="3_247tj"]
+[ext_resource type="Texture2D" uid="uid://do7dcedt2na8w" path="res://assets/etapas jogo.png" id="4_qrrxs"]
+[ext_resource type="Texture2D" uid="uid://devum5bbbwbmt" path="res://assets/botao selecao nivel.png" id="5_vak38"]
+[ext_resource type="Texture2D" uid="uid://bukja641afvs0" path="res://assets/nivel 1.png" id="6_a4ye2"]
+[ext_resource type="Texture2D" uid="uid://cy88ifpl8lv1x" path="res://assets/3estrelas.png" id="7_nc4wv"]
+[ext_resource type="Texture2D" uid="uid://cmcgxtovxdwwv" path="res://assets/nivel 2.png" id="8_og3wq"]
+[ext_resource type="Texture2D" uid="uid://b5fpdubk5xyld" path="res://assets/lvl_desbloqueado.png" id="9_dro5j"]
+[ext_resource type="Texture2D" uid="uid://bnmff6wd2s7ip" path="res://assets/nivel 3.png" id="10_4d17k"]
+[ext_resource type="Texture2D" uid="uid://o2a44cbj2k4j" path="res://assets/btn_config.png" id="12_xiq86"]
+[ext_resource type="Texture2D" uid="uid://bh836apgwxtye" path="res://assets/botao voltar.png" id="13_5osnq"]
+[ext_resource type="AudioStream" uid="uid://dlfim2ja4ogdy" path="res://assets/audios/Som-de-clique-de-mouse-Efeito-Sonoro.ogg" id="14_b5g23"]
+
+[node name="LevelSelect2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nhd7u")
+
+[node name="fundo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7xiq7")
+
+[node name="etapa" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 64.0
+offset_right = 722.0
+offset_bottom = 134.0
+texture = ExtResource("3_247tj")
+
+[node name="TextureRect" type="TextureRect" parent="etapa"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 190.0
+offset_bottom = 48.0
+texture = ExtResource("4_qrrxs")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -20.0
+offset_right = 500.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Nivel1_Button" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_vak38")
+
+[node name="nivel1" type="TextureRect" parent="HBoxContainer/Nivel1_Button"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 162.0
+offset_bottom = 72.0
+texture = ExtResource("6_a4ye2")
+
+[node name="desbloqueado" type="TextureRect" parent="HBoxContainer/Nivel1_Button"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = -41.0
+offset_right = 155.0
+offset_bottom = 5.0
+texture = ExtResource("7_nc4wv")
+
+[node name="Nivel2_Button2" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_vak38")
+
+[node name="nivel2" type="TextureRect" parent="HBoxContainer/Nivel2_Button2"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 32.0
+offset_right = 164.0
+offset_bottom = 72.0
+texture = ExtResource("8_og3wq")
+
+[node name="desbloqueado2" type="TextureRect" parent="HBoxContainer/Nivel2_Button2"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 52.0
+offset_right = 204.0
+offset_bottom = 138.0
+texture = ExtResource("7_nc4wv")
+
+[node name="Nivel3_Button3" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_vak38")
+
+[node name="nivel3" type="TextureRect" parent="HBoxContainer/Nivel3_Button3"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 163.0
+offset_bottom = 72.0
+texture = ExtResource("10_4d17k")
+
+[node name="trancado" type="TextureRect" parent="HBoxContainer/Nivel3_Button3"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 168.0
+offset_bottom = 112.0
+texture = ExtResource("9_dro5j")
+
+[node name="button_config" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1073.0
+offset_top = 7.0
+offset_right = 1153.0
+offset_bottom = 53.0
+texture_normal = ExtResource("12_xiq86")
+
+[node name="voltar_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 576.0
+offset_right = 220.0
+offset_bottom = 624.0
+texture_normal = ExtResource("13_5osnq")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_b5g23")
+
+[connection signal="pressed" from="HBoxContainer/Nivel1_Button" to="." method="_on_nivel_1_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Nivel2_Button2" to="." method="_on_nivel_2_button_2_pressed"]
+[connection signal="pressed" from="HBoxContainer/Nivel3_Button3" to="." method="_on_nivel_3_button_3_pressed"]
+[connection signal="pressed" from="button_config" to="." method="_on_button_config_pressed"]
+[connection signal="pressed" from="voltar_button" to="." method="_on_voltar_button_pressed"]
