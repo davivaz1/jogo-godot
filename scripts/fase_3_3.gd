@@ -143,13 +143,19 @@ func _finalizar_fase():
 	label_vitoria.visible = true
 	label_vitoria.text = "🎉 VOCÊ CONCLUIU O JOGO! 🎉\nTempo total: %.2f segundos" % tempo_total
 
-	var file = FileAccess.open("user://relatorio.txt", FileAccess.WRITE)
+	# Caminho da área de trabalho
+	var caminho = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/relatorio_energia.txt"
+
+	var file = FileAccess.open(caminho, FileAccess.WRITE)
 	if file:
 		file.store_line("RELATÓRIO FINAL DE JOGO")
 		file.store_line("--------------------------")
 		file.store_line("Tempo total: %.2f segundos" % tempo_total)
 		file.store_line("Data e hora: " + Time.get_datetime_string_from_system())
 		file.close()
+		print("✅ Relatório salvo na Área de Trabalho em:", caminho)
+	else:
+		push_error("❌ Não foi possível salvar o relatório na área de trabalho!")
 
 	await get_tree().create_timer(4.0).timeout
 	var menu_path = "res://scenes/main_menu.tscn"
