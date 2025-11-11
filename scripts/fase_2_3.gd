@@ -21,7 +21,7 @@ const DESCRICAO_FASE = "Bem-vindo à Fase 2-1! Escolha a resposta correta!"
 const DADOS_QUIZ = [
 	"Qual dessas energias usa a força do vento para gerar eletricidade?", 
 	["Solar", "Nuclear", "Eólica"], 
-	1
+	2
 ]
 
 func _ready():

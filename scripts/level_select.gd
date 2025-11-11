@@ -135,3 +135,8 @@ func _on_volume_changed(value):
 	# Converter valor linear para decibéis
 	var db = linear_to_db(value)
 	AudioServer.set_bus_volume_db(0, db)
+	
+func _on_jogar_button_pressed():
+	$AudioStreamPlayer2D.play()
+	Global.iniciar_cronometro()  # começa o cronômetro
+	get_tree().change_scene_to_file("res://scenes/nivel_1_selecionafase.tscn")

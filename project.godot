@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="JogoEnergia"
+run/main_scene="uid://badx6evo4sqbe"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/Global.gd"
 
 [rendering]
 
