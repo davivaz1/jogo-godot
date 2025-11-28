@@ -2,10 +2,9 @@ extends Control
 
 @onready var explicacao_container = $explicacao_container
 @onready var quiz_container = $quiz_container
-@onready var label_vitoria = $label_vitoria
 @onready var audio = $AudioStreamPlayer2D
 
-@onready var pergunta_label = $quiz_container/pergunta_label
+@onready var pergunta_label = $quiz_container/TextureRect/pergunta_label
 @onready var opcao_1 = $quiz_container/opcoes_container/opcao_1
 @onready var opcao_2 = $quiz_container/opcoes_container/opcao_2
 @onready var opcao_3 = $quiz_container/opcoes_container/opcao_3
@@ -15,12 +14,22 @@ extends Control
 @onready var button_restart = $quiz_container/button_restart
 
 var botoes_opcoes: Array
+var pergunta_atual = 0
 
 # Dados do quiz
 const DADOS_QUIZ = [
-	"Qual dessas energias usa a força do vento para gerar eletricidade?",
-	["Solar", "Nuclear", "Eólica"],
-	2
+	# Pergunta 1/2: Índice [0]
+	[
+		"Qual dessas energias usa o petróleo como fonte de energia?",
+		["Solar ☀️", "Petrólifica 🛢️", "Eólica 🌬️"],
+		1 # Resposta correta: Eólica (índice 2)
+	],
+	# Pergunta 2/2: Índice [1]
+	[
+		"Qual fonte de energia utiliza o carvão?",
+		["Carvão 🔥", "Gás Natural ⛽", "Geotérmica 🌋"],
+		0 # Resposta correta: Solar (índice 1)
+		]
 ]
 
 func _ready():
@@ -34,7 +43,7 @@ func _ready():
 func _conectar_botoes():
 	explicacao_container.get_node("button_continuar").pressed.connect(_iniciar_quiz)
 	button_restart.pressed.connect(_reiniciar_quiz)
-	button_continuar.pressed.connect(_finalizar_fase)
+	button_continuar.pressed.connect(_avancar_quiz)
 	for i in range(3):
 		botoes_opcoes[i].pressed.connect(Callable(self, "_on_opcao_pressed").bind(i))
 
@@ -50,7 +59,6 @@ func _play_click():
 # ---------------------------------------------------------
 func _mostrar_explicacao_inicial():
 	quiz_container.visible = false
-	label_vitoria.visible = false
 	explicacao_container.visible = true
 	# Nenhum texto definido aqui — apenas sua imagem no editor
 
@@ -66,8 +74,12 @@ func _iniciar_quiz():
 # Reinicia o quiz
 # ---------------------------------------------------------
 func _reiniciar_quiz():
-	var pergunta = DADOS_QUIZ[0]
-	var opcoes = DADOS_QUIZ[1]
+	if pergunta_atual >= DADOS_QUIZ.size():
+		print("Erro: Tentativa de carregar pergunta inexistente.")
+		return
+	
+	var pergunta = DADOS_QUIZ[pergunta_atual][0]
+	var opcoes = DADOS_QUIZ[pergunta_atual][1]
 	pergunta_label.text = pergunta
 
 	for i in range(3):
@@ -87,7 +99,7 @@ func _on_opcao_pressed(indice_clicado: int):
 
 	_play_click()
 
-	var indice_correto = DADOS_QUIZ[2]
+	var indice_correto = DADOS_QUIZ[pergunta_atual][2]
 	feedback_label.visible = true
 
 	if indice_clicado == indice_correto:
@@ -101,13 +113,21 @@ func _on_opcao_pressed(indice_clicado: int):
 		button_restart.visible = true
 		button_continuar.visible = false
 
+func _avancar_quiz():
+	pergunta_atual += 1 # Vai para a próxima pergunta
+	
+	if pergunta_atual < DADOS_QUIZ.size():
+		# Se ainda houver perguntas (2 no total), carrega a próxima
+		_reiniciar_quiz()
+	else:
+		# Se todas as perguntas foram respondidas, finaliza a fase
+		_finalizar_fase()
+
 # ---------------------------------------------------------
 # Finaliza a fase e avança
 # ---------------------------------------------------------
 func _finalizar_fase():
 	quiz_container.visible = false
-	label_vitoria.visible = true
-	label_vitoria.text = "VOCÊ CONCLUIU A FASE 2-3!"
 
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(0.1).timeout
 	get_tree().change_scene_to_file("res://scenes/level_select_3.tscn")

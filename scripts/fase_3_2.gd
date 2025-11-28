@@ -3,6 +3,8 @@ extends Control
 @onready var explicacao_inicial_container = $explicacao_inicial_container
 @onready var explicacao_etapa_container = $explicacao_etapa_container
 @onready var exercicio_container = $exercicio_container
+@onready var seta_1 = $exercicio_container/seta_1
+@onready var seta_2 = $exercicio_container/seta_2
 @onready var label_vitoria = $label_vitoria
 @onready var audio = $AudioStreamPlayer2D
 @onready var tipo_energia_img = $exercicio_container/tipo_energia_img
@@ -98,6 +100,9 @@ func _iniciar_exercicio():
 
 	# Atualiza a imagem principal (tipo de energia)
 	tipo_energia_img.texture = tipo_energia_imgs[etapa_atual]
+	
+	seta_1.visible = false
+	seta_2.visible = false
 
 	# Atualiza as imagens dos botões: slice do array 'imagens'
 	var base_index = etapa_atual * 3
@@ -113,6 +118,14 @@ func _on_item_pressed(nome_item: String):
 
 	selecionados.append(nome_item)
 	_play_click()
+	
+	if selecionados.size() == 1:
+		pass
+	elif selecionados.size() == 2:
+		seta_1.visible = true
+	elif selecionados.size() == 3:
+		seta_2.visible = true
+		_verificar_resposta()
 
 	if selecionados.size() == 3:
 		_verificar_resposta()

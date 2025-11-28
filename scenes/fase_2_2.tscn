@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://pejle0jouayn"]
+[gd_scene load_steps=11 format=3 uid="uid://pejle0jouayn"]
 
 [ext_resource type="Script" uid="uid://dgkq0fnumyrjd" path="res://scripts/fase_2_2.gd" id="1_d3hk1"]
 [ext_resource type="Texture2D" uid="uid://dnjia0bbruoni" path="res://assets/backgrounds/fundo jogo.png" id="1_yh6s2"]
@@ -6,10 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://dlfim2ja4ogdy" path="res://assets/audios/Som-de-clique-de-mouse-Efeito-Sonoro.ogg" id="4_bmg8w"]
 [ext_resource type="Texture2D" uid="uid://cbx21x5lk1f2n" path="res://assets/explicacao.png" id="4_ftw78"]
 [ext_resource type="Texture2D" uid="uid://n2nyl5aulady" path="res://assets/b.png" id="5_ogwm0"]
-[ext_resource type="Texture2D" uid="uid://bul2c5x56wyh5" path="res://assets/backgrounds/testo1.png" id="6_3h14g"]
+[ext_resource type="Texture2D" uid="uid://bjg5txrwaxu48" path="res://assets/fase22.png" id="7_3h14g"]
 [ext_resource type="Texture2D" uid="uid://b520fpjml6888" path="res://assets/continuar.png" id="7_htrsp"]
 [ext_resource type="Texture2D" uid="uid://bgjymdob6np7o" path="res://assets/alternativa.png" id="8_3h14g"]
-[ext_resource type="Texture2D" uid="uid://j17etteclu73" path="res://assets/resposta certa.png" id="8_htrsp"]
 [ext_resource type="Texture2D" uid="uid://p4jhd6e5nf76" path="res://assets/recomecar.png" id="9_htrsp"]
 
 [node name="Fase22" type="Control"]
@@ -29,15 +28,17 @@ texture = ExtResource("1_yh6s2")
 
 [node name="explicacao_container" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -41.0
+offset_top = -39.0
+offset_right = -1.0
+offset_bottom = 1.0
 
 [node name="button_continuar" type="TextureButton" parent="explicacao_container"]
 layout_mode = 0
-offset_left = 428.0
-offset_top = 491.0
-offset_right = 692.0
-offset_bottom = 561.0
+offset_left = 486.0
+offset_top = 532.0
+offset_right = 750.0
+offset_bottom = 602.0
 texture_normal = ExtResource("2_d3hk1")
 
 [node name="TextureButton" type="TextureRect" parent="explicacao_container/button_continuar"]
@@ -50,10 +51,10 @@ texture = ExtResource("7_htrsp")
 
 [node name="titulo_label" type="TextureRect" parent="explicacao_container"]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 11.0
-offset_right = 414.0
-offset_bottom = 81.0
+offset_left = 77.0
+offset_top = 52.0
+offset_right = 401.0
+offset_bottom = 122.0
 texture = ExtResource("2_d3hk1")
 
 [node name="TextureRect" type="TextureRect" parent="explicacao_container/titulo_label"]
@@ -66,49 +67,50 @@ texture = ExtResource("4_ftw78")
 
 [node name="texto_label" type="TextureRect" parent="explicacao_container"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 83.0
-offset_right = 1124.0
-offset_bottom = 513.0
+offset_left = 82.0
+offset_top = 112.0
+offset_right = 1189.0
+offset_bottom = 542.0
 texture = ExtResource("5_ogwm0")
 
 [node name="TextureRect" type="TextureRect" parent="explicacao_container/texto_label"]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 3.0
-offset_right = 1042.0
-offset_bottom = 390.0
-texture = ExtResource("6_3h14g")
+offset_left = 18.0
+offset_top = -2.0
+offset_right = 1098.0
+offset_bottom = 385.0
+texture = ExtResource("7_3h14g")
 
 [node name="quiz_container" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="pergunta_label" type="Label" parent="quiz_container"]
-layout_mode = 0
-offset_left = 413.0
-offset_top = 62.0
-offset_right = 453.0
-offset_bottom = 85.0
+offset_left = -43.0
+offset_top = -37.0
+offset_right = -3.0
+offset_bottom = 3.0
 
 [node name="opcoes_container" type="VBoxContainer" parent="quiz_container"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
 offset_left = 437.0
-offset_top = 204.0
-offset_right = 509.0
-offset_bottom = 398.0
+offset_top = 244.0
+offset_right = 622.0
+offset_bottom = 476.0
+grow_vertical = 2
 
 [node name="opcao_1" type="TextureButton" parent="quiz_container/opcoes_container"]
 layout_mode = 2
-texture_normal = ExtResource("8_htrsp")
+texture_normal = ExtResource("8_3h14g")
 
 [node name="label" type="Label" parent="quiz_container/opcoes_container/opcao_1"]
 layout_mode = 0
-offset_left = 93.0
-offset_top = 14.0
-offset_right = 133.0
-offset_bottom = 37.0
+offset_left = 94.0
+offset_top = 15.0
+offset_right = 134.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
 
 [node name="opcao_2" type="TextureButton" parent="quiz_container/opcoes_container"]
 layout_mode = 2
@@ -120,6 +122,8 @@ offset_left = 95.0
 offset_top = 14.0
 offset_right = 135.0
 offset_bottom = 37.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
 
 [node name="opcao_3" type="TextureButton" parent="quiz_container/opcoes_container"]
 layout_mode = 2
@@ -131,6 +135,8 @@ offset_left = 93.0
 offset_top = 14.0
 offset_right = 133.0
 offset_bottom = 37.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
 
 [node name="feedback_label" type="Label" parent="quiz_container"]
 layout_mode = 0
@@ -141,10 +147,10 @@ offset_bottom = 276.0
 
 [node name="button_continuar" type="TextureButton" parent="quiz_container"]
 layout_mode = 0
-offset_left = 888.0
-offset_top = 466.0
-offset_right = 1146.0
-offset_bottom = 536.0
+offset_left = 892.0
+offset_top = 505.0
+offset_right = 1150.0
+offset_bottom = 575.0
 texture_normal = ExtResource("2_d3hk1")
 
 [node name="TextureRect" type="TextureRect" parent="quiz_container/button_continuar"]
@@ -157,18 +163,28 @@ texture = ExtResource("7_htrsp")
 
 [node name="button_restart" type="TextureButton" parent="quiz_container"]
 layout_mode = 0
-offset_left = 887.0
-offset_top = 466.0
-offset_right = 1145.0
-offset_bottom = 536.0
+offset_left = 892.0
+offset_top = 507.0
+offset_right = 1150.0
+offset_bottom = 577.0
 texture_normal = ExtResource("9_htrsp")
 
-[node name="label_vitoria" type="Label" parent="."]
+[node name="TextureRectPergunta" type="TextureRect" parent="quiz_container"]
 layout_mode = 0
-offset_left = 591.0
-offset_top = 312.0
-offset_right = 631.0
-offset_bottom = 335.0
+offset_left = 190.0
+offset_top = 61.0
+offset_right = 1019.0
+offset_bottom = 166.0
+texture = ExtResource("5_ogwm0")
+
+[node name="pergunta_label" type="Label" parent="quiz_container/TextureRectPergunta"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 27.0
+offset_right = 778.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_bmg8w")

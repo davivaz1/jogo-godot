@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dg4jr1g2aaru1"]
+[gd_scene load_steps=10 format=3 uid="uid://dg4jr1g2aaru1"]
 
 [ext_resource type="Script" uid="uid://pbopxreve75n" path="res://scripts/fase_3_2.gd" id="1_ev2hf"]
 [ext_resource type="Texture2D" uid="uid://d4fb34s5wwsfu" path="res://assets/backgrounds/background.png" id="2_i87bx"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://p4jhd6e5nf76" path="res://assets/recomecar.png" id="4_yavsw"]
 [ext_resource type="AudioStream" uid="uid://dlfim2ja4ogdy" path="res://assets/audios/Som-de-clique-de-mouse-Efeito-Sonoro.ogg" id="5_67x5q"]
 [ext_resource type="Texture2D" uid="uid://cbx21x5lk1f2n" path="res://assets/explicacao.png" id="6_i87bx"]
+[ext_resource type="Texture2D" uid="uid://twjen3dx846u" path="res://assets/seta2.png" id="8_i87bx"]
 
 [node name="Fase32" type="Control"]
 layout_mode = 3
@@ -48,10 +49,10 @@ offset_bottom = 40.0
 
 [node name="button_continuar" type="TextureButton" parent="explicacao_inicial_container"]
 layout_mode = 0
-offset_left = 432.0
-offset_top = 440.0
-offset_right = 690.0
-offset_bottom = 510.0
+offset_left = 442.0
+offset_top = 488.0
+offset_right = 700.0
+offset_bottom = 558.0
 texture_normal = ExtResource("3_rot7v")
 
 [node name="TextureRect" type="TextureRect" parent="explicacao_inicial_container/button_continuar"]
@@ -94,18 +95,18 @@ offset_bottom = 72.0
 
 [node name="button_iniciar" type="TextureButton" parent="explicacao_etapa_container"]
 layout_mode = 0
-offset_left = 336.0
-offset_top = 440.0
-offset_right = 594.0
-offset_bottom = 510.0
+offset_left = 321.0
+offset_top = 456.0
+offset_right = 579.0
+offset_bottom = 526.0
 texture_normal = ExtResource("3_rot7v")
 
 [node name="TextureRect" type="TextureRect" parent="explicacao_etapa_container/button_iniciar"]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 8.0
-offset_right = 218.0
-offset_bottom = 48.0
+offset_left = 41.0
+offset_top = 5.0
+offset_right = 211.0
+offset_bottom = 45.0
 texture = ExtResource("3_mc6qd")
 
 [node name="fase1_label" type="Label" parent="explicacao_etapa_container"]
@@ -176,27 +177,45 @@ offset_bottom = 215.0
 
 [node name="button_restart" type="TextureButton" parent="exercicio_container"]
 layout_mode = 0
-offset_left = 464.0
-offset_top = 328.0
-offset_right = 722.0
-offset_bottom = 398.0
+offset_left = 838.0
+offset_top = 97.0
+offset_right = 1096.0
+offset_bottom = 167.0
 texture_normal = ExtResource("4_yavsw")
 
 [node name="button_continuar" type="TextureButton" parent="exercicio_container"]
 layout_mode = 0
-offset_left = 464.0
-offset_top = 328.0
-offset_right = 722.0
-offset_bottom = 398.0
+offset_left = 839.0
+offset_top = 96.0
+offset_right = 1097.0
+offset_bottom = 166.0
 texture_normal = ExtResource("3_rot7v")
 
 [node name="TextureRect" type="TextureRect" parent="exercicio_container/button_continuar"]
 layout_mode = 0
-offset_left = 40.0
+offset_left = 44.0
 offset_top = 8.0
-offset_right = 210.0
+offset_right = 214.0
 offset_bottom = 48.0
 texture = ExtResource("3_mc6qd")
+
+[node name="seta_1" type="TextureRect" parent="exercicio_container"]
+visible = false
+layout_mode = 0
+offset_left = -226.0
+offset_top = 187.0
+offset_right = 854.0
+offset_bottom = 794.0
+texture = ExtResource("8_i87bx")
+
+[node name="seta_2" type="TextureRect" parent="exercicio_container"]
+visible = false
+layout_mode = 0
+offset_left = 235.0
+offset_top = 182.0
+offset_right = 1315.0
+offset_bottom = 789.0
+texture = ExtResource("8_i87bx")
 
 [node name="label_vitoria" type="Label" parent="."]
 layout_mode = 0
