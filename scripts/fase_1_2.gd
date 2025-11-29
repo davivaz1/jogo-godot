@@ -3,17 +3,24 @@ extends Control
 @onready var explicacao_container = $explicacao_container
 @onready var exercicio_container = $exercicio_container
 @onready var label_vitoria = $label_vitoria
+
 @onready var audio = $AudioStreamPlayer2D
+@onready var narracao = $Narracao   # <-- narrador
+
 @onready var feedback_label = $exercicio_container/feedback_label
 @onready var button_restart = $exercicio_container/button_restart
 @onready var button_continuar = $exercicio_container/button_continuar
 @onready var area_renovavel = $exercicio_container/area_renovavel
 @onready var area_nao_renovavel = $exercicio_container/area_nao_renovavel
-@onready var voltar_button = $voltar_button   # <--- adiciona essa linha
+@onready var voltar_button = $voltar_button
 
 var dragging_item = null
 var original_pos = {}
 var respostas = {}
+
+# --- ARQUIVOS DE ÁUDIO ---
+var audio_explicacao = preload("res://audio/explicacao_1_2_audio.ogg")
+var audio_fase = preload("res://audio/fase_1_2_audio.ogg")
 
 # --- Gabarito ---
 var corretos = {
@@ -33,26 +40,32 @@ func _ready():
 	button_continuar.visible = false
 	feedback_label.visible = false
 
-	# --- Conecta o botão de voltar ---
+	# --- tocar narração da explicação ---
+	_tocar_narracao(audio_explicacao)
+
+	# --- botão voltar ---
 	if voltar_button:
 		voltar_button.pressed.connect(_on_voltar_button_pressed)
 
+	# botão continuar da explicação
 	explicacao_container.get_node("button_continuar").pressed.connect(func():
 		_play_click()
 		_iniciar_exercicio()
 	)
 
+	# restart
 	button_restart.pressed.connect(func():
 		_play_click()
 		_reiniciar_exercicio()
 	)
 
+	# continuar da fase
 	button_continuar.pressed.connect(func():
 		_play_click()
 		_finalizar_fase()
 	)
 
-	# Salva posições originais e conecta drag em cada item
+	# configura drag dos itens
 	for nome in corretos.keys():
 		var item = $exercicio_container/area_itens.get_node(nome)
 		original_pos[nome] = item.position
@@ -62,6 +75,13 @@ func _play_click():
 	if audio and audio.stream:
 		audio.play()
 
+# --- tocar narração ---
+func _tocar_narracao(stream):
+	if narracao:
+		narracao.stop()
+		narracao.stream = stream
+		narracao.play()
+
 func _iniciar_exercicio():
 	explicacao_container.visible = false
 	exercicio_container.visible = true
@@ -70,14 +90,22 @@ func _iniciar_exercicio():
 	button_continuar.visible = false
 	respostas.clear()
 
+	# --- tocar narração da fase ---
+	_tocar_narracao(audio_fase)
+
+# --- reiniciar ---
 func _reiniciar_exercicio():
 	for nome in corretos.keys():
 		var item = $exercicio_container/area_itens.get_node(nome)
 		item.position = original_pos[nome]
+
 	respostas.clear()
 	feedback_label.visible = false
 	button_restart.visible = false
 	button_continuar.visible = false
+
+	# --- repetir narração da fase ---
+	_tocar_narracao(audio_fase)
 
 # --- Drag & Drop ---
 func _on_item_gui_input(event: InputEvent, item):
@@ -135,18 +163,19 @@ func _salvar_progresso_e_voltar():
 	var cfg = ConfigFile.new()
 	var save_path = "user://save_data.cfg"
 	var err = cfg.load(save_path)
+
 	if err != OK:
 		cfg.set_value("level1", "unlocked_stage", 3)
 	else:
 		var unlocked = cfg.get_value("level1", "unlocked_stage", 1)
 		if 3 > unlocked:
 			cfg.set_value("level1", "unlocked_stage", 3)
+
 	cfg.save(save_path)
 
 	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://scenes/nivel_1_selecionafase.tscn")
 
-# --- Botão de voltar ---
 func _on_voltar_button_pressed():
 	_play_click()
 	get_tree().change_scene_to_file("res://scenes/nivel_1_selecionafase.tscn")

@@ -259,4 +259,6 @@ offset_right = 215.0
 offset_bottom = 629.0
 texture_normal = ExtResource("12_f7t8a")
 
+[node name="Narracao" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="pressed" from="voltar_button" to="." method="_on_votar_button_pressed"]

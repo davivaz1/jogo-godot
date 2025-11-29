@@ -169,7 +169,7 @@ texture_normal = ExtResource("8_fehjd")
 layout_mode = 0
 offset_left = 188.0
 offset_top = 60.0
-offset_right = 1015.0
+offset_right = 1112.0
 offset_bottom = 165.0
 texture = ExtResource("5_q1opf")
 
@@ -184,3 +184,5 @@ theme_override_font_sizes/font_size = 28
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_n2aej")
+
+[node name="Narracao" type="AudioStreamPlayer2D" parent="."]

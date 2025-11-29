@@ -337,3 +337,5 @@ offset_top = 128.0
 offset_right = 530.0
 offset_bottom = 151.0
 text = "vitoria"
+
+[node name="Narracao" type="AudioStreamPlayer2D" parent="."]

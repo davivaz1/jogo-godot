@@ -2,7 +2,8 @@ extends Control
 
 @onready var explicacao_container = $explicacao_container
 @onready var quiz_container = $quiz_container
-@onready var audio = $AudioStreamPlayer2D
+@onready var audio = $AudioStreamPlayer2D       # Som de clique
+@onready var narracao = $Narracao               # Narração das telas
 
 @onready var pergunta_label = $quiz_container/TextureRect/pergunta_label
 @onready var opcao_1 = $quiz_container/opcoes_container/opcao_1
@@ -15,30 +16,37 @@ extends Control
 
 var botoes_opcoes: Array
 
+# --- ARQUIVOS DE ÁUDIO DA FASE 2_1 ---
+var audio_explicacao = preload("res://audio/explicacao_2_1_audio.ogg")
+var audio_pergunta_1 = preload("res://audio/fase_2_1_pergunta1.ogg")
+var audio_pergunta_2 = preload("res://audio/fase_2_1_pergunta2.ogg")
+
 #Dados do quiz (sem parte de explicação)
 const DADOS_QUIZ = [
-	# Pergunta 1
 	[
 		"Qual dessas energias não é renovável?",
 		["Eólica 🌬️", "Carvão 🔥", "Solar ☀️"],
-		1 # Índice da resposta correta: Hidrelétrica
+		1  
 	],
-	# Pergunta 2 (Adicionei a que aparece na figura 1)
 	[
-		"Qual dessa energias é renovável?",
+		"Qual dessas energias é renovável?",
 		["Solar ☀️", "Carvão 🔥", "Petróleo 🛢️"],
-		0 # Índice da resposta correta: Petróleo
+		0  
 	]
 ]
 
-var pergunta_atual = 0 # Começa na primeira pergunta (índice 0)
+var pergunta_atual = 0
 
 func _ready():
 	botoes_opcoes = [opcao_1, opcao_2, opcao_3]
 	_conectar_botoes()
 	_mostrar_explicacao_inicial()
 
-#Conecta os botões
+	# --- TOCAR NARRAÇÃO DA EXPLICAÇÃO ---
+	_tocar_narracao(audio_explicacao)
+
+
+# ----------------------------- CONEXÕES -----------------------------
 func _conectar_botoes():
 	explicacao_container.get_node("button_continuar").pressed.connect(_iniciar_quiz)
 	button_restart.pressed.connect(_reiniciar_quiz)
@@ -47,55 +55,60 @@ func _conectar_botoes():
 	for i in range(3):
 		botoes_opcoes[i].pressed.connect(Callable(self, "_on_opcao_pressed").bind(i))
 
+
+# ----------------------------- ÁUDIO -----------------------------
 func _play_click():
 	if audio and audio.stream:
 		audio.play()
 
-#Mostra apenas a explicação visual (via PNG)
+func _tocar_narracao(stream):
+	if narracao:
+		narracao.stop()
+		narracao.stream = stream
+		narracao.play()
+
+
+# ----------------------------- EXPLICAÇÃO -----------------------------
 func _mostrar_explicacao_inicial():
 	quiz_container.visible = false
 	explicacao_container.visible = true
-	# Nenhum texto definido aqui — você controla via imagem no editor
 
-#Começa o quiz
+
+# ----------------------------- INÍCIO DO QUIZ -----------------------------
 func _iniciar_quiz():
 	explicacao_container.visible = false
 	quiz_container.visible = true
+	pergunta_atual = 0
 	_reiniciar_quiz()
 
-# Reinicia o quiz
+	# --- tocar áudio da primeira pergunta ---
+	_tocar_narracao(audio_pergunta_1)
+
+
+# ----------------------------- REINICIAR PERGUNTA -----------------------------
 func _reiniciar_quiz():
-	# Se for um RESTART GERAL, volta para a primeira pergunta
-	if not quiz_container.visible:
-		pergunta_atual = 0
-
-	if pergunta_atual >= DADOS_QUIZ.size():
-		# Isso deve ser evitado se a lógica de _finalizar_pergunta estiver correta, mas é um bom "fail-safe"
-		print("Erro: Tentativa de carregar pergunta inexistente.")
-		return
-
 	var pergunta = DADOS_QUIZ[pergunta_atual][0]
 	var opcoes = DADOS_QUIZ[pergunta_atual][1]
-	
+
 	pergunta_label.text = pergunta
 	
 	for i in range(3):
 		botoes_opcoes[i].get_node("label").text = opcoes[i]
-		botoes_opcoes[i].disabled = false # Habilita os botões
+		botoes_opcoes[i].disabled = false
 
 	feedback_label.visible = false
 	button_continuar.visible = false
 	button_restart.visible = false
 
-# Quando o jogador clica em uma opção
+
+# ----------------------------- LÓGICA DE RESPOSTA -----------------------------
 func _on_opcao_pressed(indice_clicado: int):
 	for botao in botoes_opcoes:
 		botao.disabled = true
-		
+
 	_play_click()
 
-	# O índice correto está na posição 2 da pergunta atual
-	var indice_correto = DADOS_QUIZ[pergunta_atual][2] 
+	var indice_correto = DADOS_QUIZ[pergunta_atual][2]
 	feedback_label.visible = true
 
 	if indice_clicado == indice_correto:
@@ -109,19 +122,34 @@ func _on_opcao_pressed(indice_clicado: int):
 		button_restart.visible = true
 		button_continuar.visible = false
 
-# Quando acerta e termina a fase
+
+# ----------------------------- AVANÇAR PARA A PRÓXIMA -----------------------------
+func _avancar_quiz():
+	pergunta_atual += 1
+
+	if pergunta_atual < DADOS_QUIZ.size():
+		_reiniciar_quiz()
+
+		# --- tocar áudio da pergunta correspondente ---
+		if pergunta_atual == 1:
+			_tocar_narracao(audio_pergunta_2)
+	else:
+		_finalizar_fase()
+
+
+# ----------------------------- FIM DA FASE -----------------------------
 func _finalizar_fase():
 	quiz_container.visible = false
 	
 	var next_stage_to_unlock = 2
 	_save_progress_and_return(next_stage_to_unlock)
 
-# Salva o progresso e retorna
+
 func _save_progress_and_return(next_stage: int):
 	var cfg = ConfigFile.new()
 	var save_path = "user://save_data.cfg"
 	var err = cfg.load(save_path)
-	
+
 	if err != OK:
 		cfg.set_value("level2", "unlocked_stage", next_stage)
 	else:
@@ -132,14 +160,3 @@ func _save_progress_and_return(next_stage: int):
 
 	await get_tree().create_timer(0.1).timeout
 	get_tree().change_scene_to_file("res://scenes/nivel_2_selecionafase.tscn")
-
-# Substitui _finalizar_fase no connect e trata o avanço
-func _avancar_quiz():
-	pergunta_atual += 1 # Avança para a próxima pergunta
-
-	if pergunta_atual < DADOS_QUIZ.size():
-		# Ainda há mais perguntas. Carrega a próxima.
-		_reiniciar_quiz()
-	else:
-		# Fim da fase
-		_finalizar_fase()

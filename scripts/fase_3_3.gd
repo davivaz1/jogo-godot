@@ -15,6 +15,15 @@ var slot_destinos = []
 var slot_ocupado = {}
 
 # ----------------------------------------------------------
+# 🔊 ÁUDIOS DA FASE
+# ----------------------------------------------------------
+var audios = [
+	preload("res://audio/explicacao_3_3_audio.ogg"),   # explicação inicial
+	preload("res://audio/explicacao_3_3_solar.ogg"),   # explicação da etapa
+	null                                               # exercício (sem áudio)
+]
+
+# ----------------------------------------------------------
 # 🔹 INICIALIZAÇÃO
 # ----------------------------------------------------------
 func _ready():
@@ -44,10 +53,15 @@ func _ready():
 	button_continuar.pressed.connect(_finalizar_fase)
 	button_restart.pressed.connect(_reiniciar_exercicio)
 
-	# --- Itens clicáveis e arrastáveis ---
+	# --- Itens clicáveis ---
 	for nome in ["item_1", "item_2", "item_3"]:
 		var item = $exercicio_container/area_itens.get_node(nome)
 		item.gui_input.connect(_on_item_gui_input.bind(item))
+
+	# Tocar áudio inicial
+	audio.stream = audios[0]
+	if audio.stream:
+		audio.play()
 
 # ----------------------------------------------------------
 # 🔹 TROCA DE TELAS
@@ -56,16 +70,22 @@ func _mostrar_explicacao_etapa():
 	explicacao_inicial_container.visible = false
 	explicacao_etapa_container.visible = true
 
+	audio.stream = audios[1]
+	if audio.stream:
+		audio.play()
+
 func _iniciar_exercicio():
 	explicacao_etapa_container.visible = false
 	exercicio_container.visible = true
 	feedback_label.visible = false
 	button_restart.visible = false
 	button_continuar.visible = false
+
+	audio.stream = audios[2]  # vazio
 	_reiniciar_exercicio()
 
 # ----------------------------------------------------------
-# 🔹 ARRASTAR E SOLTAR ITENS (baseado na fase 1_2)
+# 🔹 ARRASTAR E SOLTAR ITENS
 # ----------------------------------------------------------
 func _on_item_gui_input(event: InputEvent, item):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -82,7 +102,7 @@ func _on_item_gui_input(event: InputEvent, item):
 		item.position += event.relative
 
 # ----------------------------------------------------------
-# 🔹 VERIFICA SE O ITEM FOI SOLTO DENTRO DE UM SLOT
+# 🔹 VERIFICA COLISÃO COM SLOTS
 # ----------------------------------------------------------
 func _verificar_colisao(item):
 	for slot in slot_destinos:
@@ -94,11 +114,11 @@ func _verificar_colisao(item):
 			return
 
 # ----------------------------------------------------------
-# 🔹 VERIFICA SE OS ITENS ESTÃO NA ORDEM CORRETA
+# 🔹 VERIFICA RESPOSTA
 # ----------------------------------------------------------
 func _verificar_resposta():
 	if slot_ocupado.size() < 3:
-		return # Ainda falta preencher slots
+		return
 
 	var acertos = 0
 	for i in range(slot_destinos.size()):
@@ -109,7 +129,7 @@ func _verificar_resposta():
 	feedback_label.visible = true
 
 	if acertos == 3:
-		feedback_label.text = "Correto! ☀️"
+		feedback_label.text = "Correto! ⚡"
 		feedback_label.add_theme_color_override("font_color", Color(0, 1, 0))
 		button_continuar.visible = true
 		button_restart.visible = false
@@ -120,7 +140,7 @@ func _verificar_resposta():
 		button_continuar.visible = false
 
 # ----------------------------------------------------------
-# 🔹 REINICIA O EXERCÍCIO
+# 🔹 REINICIAR EXERCÍCIO
 # ----------------------------------------------------------
 func _reiniciar_exercicio():
 	slot_ocupado.clear()
@@ -128,7 +148,6 @@ func _reiniciar_exercicio():
 	button_restart.visible = false
 	button_continuar.visible = false
 
-	# Reposiciona os itens
 	var area_itens = $exercicio_container/area_itens
 	var base_pos = area_itens.position
 	var desloc = 150
@@ -137,29 +156,26 @@ func _reiniciar_exercicio():
 		var item = area_itens.get_node("item_%d" % (i + 1))
 		item.position = Vector2(base_pos.x + i * desloc, base_pos.y)
 
+# ----------------------------------------------------------
+# 🔹 FINALIZAR FASE
+# ----------------------------------------------------------
 func _finalizar_fase():
 	var tempo_total = Global.parar_cronometro()
 
 	label_vitoria.visible = true
-	label_vitoria.text = "🎉 VOCÊ CONCLUIU O JOGO! 🎉\nTempo total: %.2f segundos" % tempo_total
+	label_vitoria.text = "🎉 FASE CONCLUÍDA! 🎉\nTempo: %.2f segundos" % tempo_total
 
-	# Caminho da área de trabalho
 	var caminho = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/relatorio_energia.txt"
-
 	var file = FileAccess.open(caminho, FileAccess.WRITE)
+
 	if file:
-		file.store_line("RELATÓRIO FINAL DE JOGO")
+		file.store_line("RELATÓRIO - FASE 3_3")
 		file.store_line("--------------------------")
 		file.store_line("Tempo total: %.2f segundos" % tempo_total)
 		file.store_line("Data e hora: " + Time.get_datetime_string_from_system())
 		file.close()
-		print("✅ Relatório salvo na Área de Trabalho em:", caminho)
 	else:
-		push_error("❌ Não foi possível salvar o relatório na área de trabalho!")
+		push_error("❌ Não foi possível salvar o relatório!")
 
 	await get_tree().create_timer(4.0).timeout
-	var menu_path = "res://scenes/main_menu.tscn"
-	if ResourceLoader.exists(menu_path):
-		get_tree().change_scene_to_file(menu_path)
-	else:
-		push_error("⚠️ Cena do menu principal não encontrada.")
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
