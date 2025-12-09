@@ -156,26 +156,29 @@ func _reiniciar_exercicio():
 		var item = area_itens.get_node("item_%d" % (i + 1))
 		item.position = Vector2(base_pos.x + i * desloc, base_pos.y)
 
-# ----------------------------------------------------------
-# 🔹 FINALIZAR FASE
-# ----------------------------------------------------------
+
 func _finalizar_fase():
 	var tempo_total = Global.parar_cronometro()
-
-	label_vitoria.visible = true
-	label_vitoria.text = "🎉 FASE CONCLUÍDA! 🎉\nTempo: %.2f segundos" % tempo_total
-
+	
 	var caminho = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/relatorio_energia.txt"
 	var file = FileAccess.open(caminho, FileAccess.WRITE)
 
+	var minutos = floor(tempo_total / 60.0)
+	var segundos = fmod(tempo_total, 60.0)
+	
 	if file:
 		file.store_line("RELATÓRIO - FASE 3_3")
 		file.store_line("--------------------------")
-		file.store_line("Tempo total: %.2f segundos" % tempo_total)
+		file.store_line("Tempo total: %02d minutos e %.2f segundos" % [minutos, segundos]) # Novo formato
 		file.store_line("Data e hora: " + Time.get_datetime_string_from_system())
 		file.close()
 	else:
 		push_error("❌ Não foi possível salvar o relatório!")
 
-	await get_tree().create_timer(4.0).timeout
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	var relatorio_cena = load("res://scenes/relatorio.tscn")
+	var relatorio_instancia = relatorio_cena.instantiate()
+	
+	get_tree().root.add_child(relatorio_instancia)
+	relatorio_instancia.configurar_relatorio(tempo_total)
+	
+	queue_free()

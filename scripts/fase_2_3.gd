@@ -17,30 +17,23 @@ extends Control
 var botoes_opcoes: Array
 var pergunta_atual = 0
 
-# ---------------------------------------------------------
-# ÁUDIOS DA FASE 2_3  (EXATAMENTE COMO PEDIU)
-# ---------------------------------------------------------
 var audio_explicacao = preload("res://audio/explicacao_2_3_audio.ogg")
 var audio_pergunta_1 = preload("res://audio/fase_2_3_pergunta1.ogg")
 var audio_pergunta_2 = preload("res://audio/fase_2_3_pergunta2.ogg")
 
-# ---------------------------------------------------------
-# PERGUNTAS ORIGINAIS (SUAS, SEM MUDAR NADA)
-# ---------------------------------------------------------
 const DADOS_QUIZ = [
 	[
-		"Qual dessas energias usa o petróleo como fonte de energia?",
-		["Solar ☀️", "Petrólifica 🛢️", "Eólica 🌬️"],
+		"QUAL DESSAS ENERGIAS USA O PETRÓLEO?",
+		["SOLAR ☀️", "PETRÓLIFICA 🛢️", "EÓLICA 🌬️"],
 		1
 	],
 	[
-		"Qual fonte de energia utiliza o carvão?",
-		["Carvão 🔥", "Gás Natural ⛽", "Geotérmica 🌋"],
+		"QUAL FONTE DE ENERGIA USA O CARVÃO?",
+		["CARVÃO 🔥", "GÁS NATURAL ⛽", "GEOTÉRMICA 🌋"],
 		0
 	]
 ]
 
-# ---------------------------------------------------------
 func _ready():
 	botoes_opcoes = [opcao_1, opcao_2, opcao_3]
 	_conectar_botoes()
@@ -48,7 +41,6 @@ func _ready():
 	_mostrar_explicacao_inicial()
 	_tocar_narracao(audio_explicacao)
 
-# ---------------------------------------------------------
 func _conectar_botoes():
 	explicacao_container.get_node("button_continuar").pressed.connect(_iniciar_quiz)
 	button_restart.pressed.connect(_reiniciar_quiz)
@@ -57,7 +49,6 @@ func _conectar_botoes():
 	for i in range(3):
 		botoes_opcoes[i].pressed.connect(Callable(self, "_on_opcao_pressed").bind(i))
 
-# ---------------------------------------------------------
 func _tocar_narracao(stream):
 	if narracao:
 		narracao.stop()
@@ -68,12 +59,10 @@ func _play_click():
 	if audio and audio.stream:
 		audio.play()
 
-# ---------------------------------------------------------
 func _mostrar_explicacao_inicial():
 	quiz_container.visible = false
 	explicacao_container.visible = true
 
-# ---------------------------------------------------------
 func _iniciar_quiz():
 	explicacao_container.visible = false
 	quiz_container.visible = true
@@ -82,7 +71,6 @@ func _iniciar_quiz():
 	_tocar_narracao(audio_pergunta_1)
 	_reiniciar_quiz()
 
-# ---------------------------------------------------------
 func _reiniciar_quiz():
 	if pergunta_atual >= DADOS_QUIZ.size():
 		return
@@ -100,7 +88,6 @@ func _reiniciar_quiz():
 	button_restart.visible = false
 	button_continuar.visible = false
 
-# ---------------------------------------------------------
 func _on_opcao_pressed(indice_clicado: int):
 	for botao in botoes_opcoes:
 		botao.disabled = true
@@ -122,7 +109,6 @@ func _on_opcao_pressed(indice_clicado: int):
 		button_restart.visible = true
 		button_continuar.visible = false
 
-# ---------------------------------------------------------
 func _avancar_quiz():
 	pergunta_atual += 1
 
@@ -134,7 +120,6 @@ func _avancar_quiz():
 	else:
 		_finalizar_fase()
 
-# ---------------------------------------------------------
 func _finalizar_fase():
 	quiz_container.visible = false
 

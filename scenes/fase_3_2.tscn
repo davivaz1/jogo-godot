@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://p4jhd6e5nf76" path="res://assets/recomecar.png" id="4_yavsw"]
 [ext_resource type="AudioStream" uid="uid://dlfim2ja4ogdy" path="res://assets/audios/Som-de-clique-de-mouse-Efeito-Sonoro.ogg" id="5_67x5q"]
 [ext_resource type="Texture2D" uid="uid://cbx21x5lk1f2n" path="res://assets/explicacao.png" id="6_i87bx"]
-[ext_resource type="Texture2D" uid="uid://twjen3dx846u" path="res://assets/seta2.png" id="8_i87bx"]
+[ext_resource type="Texture2D" uid="uid://xmtfevn5kpc" path="res://assets/seta2.png" id="8_i87bx"]
 
 [node name="Fase32" type="Control"]
 layout_mode = 3
@@ -200,21 +200,19 @@ offset_bottom = 48.0
 texture = ExtResource("3_mc6qd")
 
 [node name="seta_1" type="TextureRect" parent="exercicio_container"]
-visible = false
 layout_mode = 0
-offset_left = -226.0
-offset_top = 187.0
-offset_right = 854.0
-offset_bottom = 794.0
+offset_left = 242.0
+offset_top = 390.0
+offset_right = 468.0
+offset_bottom = 522.0
 texture = ExtResource("8_i87bx")
 
 [node name="seta_2" type="TextureRect" parent="exercicio_container"]
-visible = false
 layout_mode = 0
-offset_left = 235.0
-offset_top = 182.0
-offset_right = 1315.0
-offset_bottom = 789.0
+offset_left = 722.0
+offset_top = 389.0
+offset_right = 948.0
+offset_bottom = 521.0
 texture = ExtResource("8_i87bx")
 
 [node name="label_vitoria" type="Label" parent="."]

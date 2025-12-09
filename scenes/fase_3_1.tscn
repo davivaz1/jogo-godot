@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cx14roj74te3j" path="res://assets/fase1.png" id="6_y6nq2"]
 [ext_resource type="Texture2D" uid="uid://djc11docrhhm3" path="res://assets/image.png" id="7_oqrn8"]
 [ext_resource type="Texture2D" uid="uid://p4jhd6e5nf76" path="res://assets/recomecar.png" id="8_8biyr"]
-[ext_resource type="Texture2D" uid="uid://twjen3dx846u" path="res://assets/seta2.png" id="9_y6nq2"]
+[ext_resource type="Texture2D" uid="uid://xmtfevn5kpc" path="res://assets/seta2.png" id="9_y6nq2"]
 
 [node name="Fase31" type="Control"]
 layout_mode = 3
@@ -224,21 +224,19 @@ offset_bottom = 48.0
 texture = ExtResource("5_8biyr")
 
 [node name="seta_1" type="TextureRect" parent="exercicio_container"]
-visible = false
 layout_mode = 0
-offset_left = -274.0
-offset_top = 148.0
-offset_right = 806.0
-offset_bottom = 755.0
+offset_left = 132.0
+offset_top = 396.0
+offset_right = 358.0
+offset_bottom = 528.0
 texture = ExtResource("9_y6nq2")
 
 [node name="seta_2" type="TextureRect" parent="exercicio_container"]
-visible = false
 layout_mode = 0
-offset_left = 51.0
-offset_top = 160.0
-offset_right = 1131.0
-offset_bottom = 767.0
+offset_left = 559.0
+offset_top = 391.0
+offset_right = 785.0
+offset_bottom = 523.0
 texture = ExtResource("9_y6nq2")
 
 [node name="label_vitoria" type="Label" parent="."]

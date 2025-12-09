@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://blcrwsyrf4si8"]
+
+[ext_resource type="Script" uid="uid://duaj5oki5i04e" path="res://scripts/relatorio.gd" id="1_c21sf"]
+[ext_resource type="Texture2D" uid="uid://ddmds6acxyhcu" path="res://assets/fundo jogo.png" id="2_bgte1"]
+[ext_resource type="Texture2D" uid="uid://bqdqpuj8s8ce" path="res://assets/popup_creditos.png" id="3_ggelo"]
+[ext_resource type="Texture2D" uid="uid://iaorxvlg6h30" path="res://assets/tela relátorio.png" id="4_r7ovg"]
+[ext_resource type="Texture2D" uid="uid://dma6x4shvhghf" path="res://assets/Screenshot_2025-12-08_172645-removebg-preview.png" id="5_46tuj"]
+[ext_resource type="Texture2D" uid="uid://bmxeirivvp3th" path="res://assets/btn.png" id="6_k1srt"]
+[ext_resource type="Texture2D" uid="uid://b520fpjml6888" path="res://assets/continuar.png" id="7_jfabn"]
+
+[node name="Relatorio" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_c21sf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 1158.0
+offset_bottom = 646.0
+texture = ExtResource("2_bgte1")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 138.0
+offset_right = 852.0
+offset_bottom = 555.0
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("3_ggelo")
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/TextureRect"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 20.0
+offset_right = 510.0
+offset_bottom = 340.0
+texture = ExtResource("4_r7ovg")
+
+[node name="tempo_label" type="Label" parent="CenterContainer/TextureRect"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 48.0
+offset_right = 82.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 402.0
+offset_top = -87.0
+offset_right = 850.0
+offset_bottom = 144.0
+texture = ExtResource("5_46tuj")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 847.0
+offset_top = 556.0
+offset_right = 1105.0
+offset_bottom = 626.0
+texture_normal = ExtResource("6_k1srt")
+
+[node name="TextureRect" type="TextureRect" parent="TextureButton"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 7.0
+offset_right = 221.0
+offset_bottom = 47.0
+texture = ExtResource("7_jfabn")

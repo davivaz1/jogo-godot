@@ -17,45 +17,35 @@ extends Control
 var botoes_opcoes: Array
 var pergunta_atual = 0
 
-# -----------------------------------------------------------
-#                 ÁUDIOS DA FASE 2_2
-# -----------------------------------------------------------
 var audio_explicacao = preload("res://audio/explicacao_2_2_audio.ogg")
 var audio_pergunta_1 = preload("res://audio/fase_2_2_pergunta1.ogg")
 var audio_pergunta_2 = preload("res://audio/fase_2_2_pergunta2.ogg")
 var audio_pergunta_3 = preload("res://audio/fase_2_2_pergunta3.ogg")
 
-# -----------------------------------------------------------
-#       DADOS DO QUIZ — (AS MESMAS 3 PERGUNTAS DA 2_1)
-# -----------------------------------------------------------
 const DADOS_QUIZ = [
 	[
-		"Qual fonte é responsável pela energia eólica?",
-		["Vento 🌬️", "Solar ☀️", "Carvão 🔥"],
+		"QUAL FONTE É RESPONSÁVEL PELA EÓLICA",
+		["VENTO 🌬️", "SOLAR ☀️", "CARVÃO 🔥"],
 		0
 	],
 	[
-		"Qual fonte é responsável pela energia solar?",
-		["Solar ☀️", "Biomassa 🌱", "Gás Natural ⛽"],
+		"QUAL FONTE É RESPONSÁVEL PELA SOLAR?",
+		["SOLAR ☀️", "BIOMASSA 🌱", "GÁS NATURAL ⛽"],
 		0
 	],
 	[
-		"Que energia utiliza a força da água?",
-		["Nuclear ☢️", "Geotérmica 🌋", "Hidrelétrica 💧"],
+		"QUE ENERGIA UTILIZA A ÁGUA?",
+		["NUCLEAR ☢️", "GEOTÉRMICA 🌋", "HIDRELÉTRICA 💧"],
 		2
 	]
 ]
 
-# -----------------------------------------------------------
 func _ready():
 	botoes_opcoes = [opcao_1, opcao_2, opcao_3]
 	_conectar_botoes()
 	_mostrar_explicacao_inicial()
-
-	# toca o áudio da explicação
 	_tocar_narracao(audio_explicacao)
 
-# -----------------------------------------------------------
 func _conectar_botoes():
 	explicacao_container.get_node("button_continuar").pressed.connect(_iniciar_quiz)
 	button_restart.pressed.connect(_reiniciar_quiz)
@@ -64,7 +54,6 @@ func _conectar_botoes():
 	for i in range(3):
 		botoes_opcoes[i].pressed.connect(Callable(self, "_on_opcao_pressed").bind(i))
 
-# -----------------------------------------------------------
 func _play_click():
 	if audio and audio.stream:
 		audio.play()
@@ -75,12 +64,10 @@ func _tocar_narracao(stream):
 		narracao.stream = stream
 		narracao.play()
 
-# -----------------------------------------------------------
 func _mostrar_explicacao_inicial():
 	quiz_container.visible = false
 	explicacao_container.visible = true
 
-# -----------------------------------------------------------
 func _iniciar_quiz():
 	explicacao_container.visible = false
 	quiz_container.visible = true
@@ -89,7 +76,6 @@ func _iniciar_quiz():
 	_tocar_narracao(audio_pergunta_1)
 	_reiniciar_quiz()
 
-# -----------------------------------------------------------
 func _reiniciar_quiz():
 	if pergunta_atual >= DADOS_QUIZ.size():
 		return
@@ -108,7 +94,6 @@ func _reiniciar_quiz():
 	button_restart.visible = false
 	button_continuar.visible = false
 
-# -----------------------------------------------------------
 func _on_opcao_pressed(indice: int):
 	for botao in botoes_opcoes:
 		botao.disabled = true
@@ -130,7 +115,6 @@ func _on_opcao_pressed(indice: int):
 		button_restart.visible = true
 		button_continuar.visible = false
 
-# -----------------------------------------------------------
 func _avancar_quiz():
 	pergunta_atual += 1
 
@@ -143,12 +127,10 @@ func _avancar_quiz():
 	else:
 		_finalizar_fase()
 
-# -----------------------------------------------------------
 func _finalizar_fase():
 	quiz_container.visible = false
 	_save_progress_and_return(3)
 
-# -----------------------------------------------------------
 func _save_progress_and_return(next_stage: int):
 	var cfg = ConfigFile.new()
 	var save_path = "user://save_data.cfg"

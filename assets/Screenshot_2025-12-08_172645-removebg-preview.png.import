@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xmtfevn5kpc"
-path="res://.godot/imported/seta2.png-6348aa54cb6227d38b97b7525812419b.ctex"
+uid="uid://dma6x4shvhghf"
+path="res://.godot/imported/Screenshot_2025-12-08_172645-removebg-preview.png-a8cbb51d315c1d7a26cfe145e6a78150.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/seta2.png"
-dest_files=["res://.godot/imported/seta2.png-6348aa54cb6227d38b97b7525812419b.ctex"]
+source_file="res://assets/Screenshot_2025-12-08_172645-removebg-preview.png"
+dest_files=["res://.godot/imported/Screenshot_2025-12-08_172645-removebg-preview.png-a8cbb51d315c1d7a26cfe145e6a78150.ctex"]
 
 [params]
 
